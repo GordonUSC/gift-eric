@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- STYLE: Producer's status board at Wisconsin golden hour (monday-style pills, Figtree UI, Fraunces end credits over a lake sunset) | WHY: Eric runs GGP on boards, Board then Group then Item then Status, so the gift lets him move his own season to Done and then rolls the credits he never gets | ALT: Festival badge lanyard keepsake, rejected because the board is how he actually thinks -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>That's a Wrap</title>
+<meta name="description" content="A season wrap for Eric Francksen, Executive Producer.">
+<meta property="og:title" content="That's a Wrap, for Eric">
+<meta property="og:image" content="https://gordonusc.github.io/gift-eric/img/hero.jpg">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;700;800&family=Fraunces:opsz,wght@9..144,400;9..144,700&display=swap">
+<style>
+:root{--done:#00c875;--work:#fdab3d;--ink:#1f2340;--card:#ffffffee;--sun:#ffb347;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#1a0f08;color:#fff;font:15px/1.45 Figtree,system-ui,sans-serif;overflow:hidden;-webkit-user-select:none;user-select:none;touch-action:manipulation}
+.stage{position:absolute;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(100vw,calc(100svh*9/16));overflow:hidden}
+.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 6s ease,filter 2s}
+.wrapped .bg{transform:scale(1.08);filter:brightness(.7)}
+.head{position:absolute;left:0;right:0;top:calc(env(safe-area-inset-top,0px) + 18px);text-align:center;padding:0 16px;text-shadow:0 2px 14px #0009;transition:opacity .8s}
+.head small{font-weight:800;font-size:11px;letter-spacing:.28em;color:#fff3dc}
+.head h1{font:700 clamp(30px,9.5vw,44px)/1.05 Fraunces,Georgia,serif;margin:6px 0 6px}
+.head p{margin:0 auto;max-width:30ch;font-size:15px}
+.board{position:absolute;left:14px;right:14px;top:31%;background:var(--card);color:var(--ink);border-radius:14px;padding:12px 12px 10px;box-shadow:0 14px 40px #0006;transition:opacity .8s,transform .8s}
+.wrapped .board,.wrapped .head{opacity:0;transform:translateY(-12px);pointer-events:none}
+.bt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:0 2px 8px}
+.bt b{font-weight:800;font-size:15px}
+.bt span{font-size:12px;color:#676879}
+.grp{font-weight:800;font-size:13px;color:#579bfc;border-left:4px solid #579bfc;padding-left:8px;margin:0 0 6px}
+.row{display:grid;grid-template-columns:1fr 34px 108px;align-items:center;gap:8px;padding:8px 4px;border-top:1px solid #e6e9ef}
+.row .it{min-width:0;font-weight:700;font-size:14px;line-height:1.25}
+.row .it em{display:block;font-style:normal;font-weight:500;font-size:12px;color:#676879}
+.own{width:30px;height:30px;border-radius:50%;background:#e2445c;color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center}
+.st{height:34px;border:0;border-radius:6px;background:var(--work);color:#fff;font:800 13px Figtree,sans-serif;cursor:pointer;position:relative;overflow:hidden;transition:background .35s,transform .15s}
+.st:active{transform:scale(.96)}
+.st.done{background:var(--done)}
+.st.done::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,transparent 30%,#fff8 50%,transparent 70%);animation:shine .8s ease-out 1}
+@keyframes shine{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.dod{margin:8px 4px 2px;font-size:12px;color:#676879}
+.dod b{color:var(--ink)}
+.bar{height:8px;border-radius:4px;background:#e6e9ef;overflow:hidden;margin:6px 4px 0}
+.bar i{display:block;height:100%;width:0;background:var(--done);transition:width .5s}
+canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.clap{position:absolute;left:50%;top:44%;width:150px;transform:translate(-50%,-50%) scale(.6);opacity:0;pointer-events:none}
+.clap.on{animation:clapin 1.4s ease forwards}
+@keyframes clapin{0%{opacity:0;transform:translate(-50%,-50%) scale(.6)}20%{opacity:1;transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
+.clap .top{transform-origin:6px 100%;transform:rotate(-24deg);transition:transform .18s ease-in .35s}
+.clap.on .top{transform:rotate(0)}
+.credits{position:absolute;left:0;right:0;top:100%;text-align:center;padding:0 22px;font-family:Fraunces,Georgia,serif;text-shadow:0 2px 16px #000c}
+.credits.roll{animation:roll 26s linear forwards}
+@keyframes roll{from{transform:translateY(0)}to{transform:translateY(calc(-100% - 105svh))}}
+.credits .k{font:800 11px Figtree,sans-serif;letter-spacing:.3em;color:#ffd9a0;margin-top:34px}
+.credits .v{font-size:clamp(22px,7vw,30px);font-weight:700;margin-top:4px}
+.credits .s{font-size:16px;margin-top:4px;opacity:.95}
+.credits .big{font-size:clamp(34px,11vw,50px);line-height:1.05}
+.final{position:absolute;left:16px;right:16px;top:34%;padding:26px 10px;border-radius:20px;background:radial-gradient(closest-side,#000a,#0000);text-align:center;opacity:0;transition:opacity 1.6s;pointer-events:none;text-shadow:0 2px 18px #000c}
+.final.on{opacity:1;pointer-events:auto}
+.final h2{font:700 clamp(34px,11vw,52px)/1.05 Fraunces,Georgia,serif;margin:0 0 10px}
+.final .pill{display:inline-block;background:var(--done);color:#fff;font:800 15px Figtree,sans-serif;padding:8px 16px;border-radius:6px}
+.final button{margin-top:18px;background:#0006;color:#fff;border:1px solid #fff8;border-radius:20px;padding:8px 16px;font:700 13px Figtree,sans-serif;cursor:pointer}
+.foot{position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom,0px) + 8px);text-align:center;font-size:11px;opacity:.75;text-shadow:0 1px 6px #000}
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+  <img class="bg" src="img/hero.jpg" alt="A producer's desk with a clapperboard and sticky notes, looking out over a Wisconsin lake at sunset through autumn maples">
+  <div class="head"><small>FOR ERIC FRANCKSEN</small><h1>That's a Wrap</h1><p>Your season, on your kind of board. Tap each status to move it to Done.</p></div>
+  <div class="board" id="board">
+    <div class="bt"><b>GGP Season '26</b><span>Owner: Eric</span></div>
+    <div class="grp">October</div>
+    <div class="row"><div class="it">GGP Weekly Connect<em>every week, rain or shine</em></div><div class="own">EF</div><button class="st">Working on it</button></div>
+    <div class="row"><div class="it">Directory Production Plan<em>signed off, by you</em></div><div class="own">EF</div><button class="st">Working on it</button></div>
+    <div class="row"><div class="it">IGNITE Impact Challenge<em>with Games for Change</em></div><div class="own">EF</div><button class="st">Working on it</button></div>
+    <div class="row"><div class="it">Festival of Gaming<em>EP badge on</em></div><div class="own">EF</div><button class="st">Working on it</button></div>
+    <div class="bar"><i id="bar"></i></div>
+    <div class="dod"><b>Definition of Done:</b> every item green, and Eric knows how much it all meant.</div>
+  </div>
+  <svg class="clap" id="clap" viewBox="0 0 150 120" aria-hidden="true">
+    <rect x="6" y="40" width="138" height="74" rx="6" fill="#1b1b1b"/>
+    <text x="75" y="88" fill="#fff" font-family="Figtree,sans-serif" font-weight="800" font-size="20" text-anchor="middle">WRAP</text>
+    <g class="top"><rect x="6" y="18" width="138" height="22" rx="4" fill="#1b1b1b"/><path d="M20 18h16l-10 22H10zM56 18h16l-10 22H46zM92 18h16l-10 22H82zM128 18h16l-10 22h-16z" fill="#fff"/></g>
+  </svg>
+  <canvas id="c"></canvas>
+  <div class="credits" id="credits">
+    <div class="k">GGP PRESENTS</div><div class="v">A Season of Showing Up</div>
+    <div class="k">EXECUTIVE PRODUCER</div><div class="v big">Eric Francksen</div>
+    <div class="k">KEEPER OF</div><div class="s">the Weekly Connect</div>
+    <div class="k">SPECIAL SKILL</div><div class="s">turning ideas into boards,<br>and boards into Done</div>
+    <div class="k">STATUS UPDATES</div><div class="s">always on time, always kind</div>
+    <div class="k">PRIORITIES</div><div class="s">Must have: Eric. Should have: more Eric.</div>
+    <div class="k">SET IN</div><div class="s">Stoughton, Wisconsin</div>
+    <div class="k">SPECIAL THANKS</div><div class="s">the Francksen family</div>
+    <div class="k">WITH LOVE AND GRATITUDE</div><div class="v">Gordon</div>
+  </div>
+  <div class="final" id="final"><h2>Thank you, Eric.</h2><span class="pill">Status: Loved</span><br><button id="again" type="button">Roll it again</button></div>
+  <div class="foot">made by Darby, Gordon's AI assistant, with love from Gordon</div>
+</div>
+<script>
+// ElevenLabs sound design: done chime, clapperboard, wrap party applause, end credits score. Code only mixes.
+let ac=null, master=null, bufs={}, music=null;
+function audio(){ if(!ac){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); master=ac.createGain(); master.gain.value=.9; master.connect(ac.destination); ['done','clap','applause','music'].forEach(load);}catch(e){} } if(ac&&ac.state==='suspended') ac.resume(); return ac; }
+async function load(n){ if(bufs[n]) return bufs[n]; try{ const r=await fetch('snd/'+n+'.mp3'); const a=await r.arrayBuffer(); bufs[n]=await new Promise((ok,no)=>ac.decodeAudioData(a,ok,no)); }catch(e){} return bufs[n]; }
+async function play(n,vol=1,rate=1){ if(!audio()) return null; const b=await load(n); if(!b) return null; const s=ac.createBufferSource(), g=ac.createGain(); s.buffer=b; s.playbackRate.value=rate; g.gain.value=vol; s.connect(g).connect(master); s.start(); return {s,g}; }
+const stage=document.getElementById('stage'), btns=[...document.querySelectorAll('.st')];
+const c=document.getElementById('c'), x=c.getContext('2d'), D=Math.min(devicePixelRatio||1,2);
+function size(){ c.width=c.clientWidth*D; c.height=c.clientHeight*D; } size(); addEventListener('resize',size);
+const LEAF=['#d9481c','#f08a24','#f6c544','#b8321a','#00c875'];
+let leaves=[], done=0;
+function burst(el){ const r=el.getBoundingClientRect(), s=c.getBoundingClientRect(); const cx=(r.left+r.width/2-s.left)*D, cy=(r.top+r.height/2-s.top)*D;
+  for(let i=0;i<22;i++){ const a=i/22*Math.PI*2; leaves.push({x:cx,y:cy,vx:Math.cos(a)*(2+i%4)*D,vy:Math.sin(a)*(2+i%3)*D-2*D,r:a,vr:(i%2?.1:-.1),a:1,c:LEAF[i%LEAF.length],z:(5+i%4)*D}); } }
+btns.forEach(b=>b.addEventListener('click',()=>{ audio(); if(b.classList.contains('done')) return; b.classList.add('done'); b.textContent='Done'; done++;
+  play('done',.85,1+done*.06); burst(b); document.getElementById('bar').style.width=(done/btns.length*100)+'%';
+  if(done===btns.length) setTimeout(wrap,900); }));
+function wrap(){ play('clap',1); document.getElementById('clap').classList.add('on'); setTimeout(()=>play('applause',.55),500);
+  setTimeout(()=>{ stage.classList.add('wrapped'); play('music',.8).then(m=>music=m); const cr=document.getElementById('credits'); cr.classList.remove('roll'); void cr.offsetWidth; cr.classList.add('roll');
+    for(let i=0;i<40;i++) leaves.push({x:(i/40)*c.width,y:-20*D-(i%7)*40*D,vx:(i%3-1)*.4*D,vy:(1+i%3*.5)*D,r:i,vr:.03,a:1,c:LEAF[i%4],z:(6+i%3)*D,fall:true}); },1300);
+  setTimeout(()=>{ document.getElementById('final').classList.add('on'); play('applause',.5); },27500); }
+document.getElementById('again').onclick=()=>{ document.getElementById('final').classList.remove('on'); if(music) try{music.s.stop()}catch(e){} wrap(); };
+(function loop(){ x.clearRect(0,0,c.width,c.height);
+  leaves.forEach(l=>{ l.x+=l.vx; l.y+=l.vy; l.r+=l.vr; if(l.fall){ l.vx=Math.sin(l.y/(60*D))*.8*D; if(l.y>c.height+30*D) l.a=0; } else { l.vy+=.12*D; l.a-=.012; }
+    x.save(); x.globalAlpha=Math.max(l.a,0); x.translate(l.x,l.y); x.rotate(l.r); x.fillStyle=l.c; x.beginPath(); x.ellipse(0,0,l.z,l.z*.5,0,0,7); x.fill(); x.restore(); });
+  leaves=leaves.filter(l=>l.a>0); requestAnimationFrame(loop); })();
+</script>
+</body>
+</html>

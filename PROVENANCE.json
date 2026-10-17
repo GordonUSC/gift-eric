@@ -1,0 +1,7 @@
+{
+ "img/hero.jpg": {"tool": "higgsfield", "prompt": "producer's desk with clapperboard and sticky notes over a Wisconsin lake at autumn sunset (job a9e0715e) gpt_image_2_5"},
+ "snd/done.mp3": {"tool": "elevenlabs", "prompt": "bright satisfying task-complete chime (flow YYvwVc9bMqFyQyzoONjF)"},
+ "snd/clap.mp3": {"tool": "elevenlabs", "prompt": "film clapperboard snapping shut (flow YYvwVc9bMqFyQyzoONjF)"},
+ "snd/applause.mp3": {"tool": "elevenlabs", "prompt": "warm wrap party applause (flow YYvwVc9bMqFyQyzoONjF)"},
+ "snd/music.mp3": {"tool": "elevenlabs", "prompt": "warm uplifting end-credits score, piano and strings, eleven_music_v2_5 (flow YYvwVc9bMqFyQyzoONjF)"}
+}
