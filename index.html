@@ -489,7 +489,7 @@ const LANES={
   function answer(){ if(answered) return; answered=true; clearInterval(rings); stop(ringH); pad.remove(); $('#verb').style.display='none'; $('#hud').textContent='';
     fade(bed,.12,.6); play('gordon',1).then(h=>voice=h);
     const Q=document.createElement('div'); Q.className='quotes'; Q.innerHTML='<p>I have ideas. You have follow-through.</p><p>I cannot point to a single major thing I have built in this industry without your fingerprints somewhere on it.</p><p>You did not have to give me your home. You gave it to me anyway.</p><small>Gordon</small>'; P.appendChild(Q);
-    const times=[600,4200,11500,17000]; [...Q.children].forEach((el,i)=>onClean((id=>()=>clearTimeout(id))(setTimeout(()=>el.classList.add('on'),times[i]))));
+    const times=[1900,5550,13100,17300]; [...Q.children].forEach((el,i)=>onClean((id=>()=>clearTimeout(id))(setTimeout(()=>el.classList.add('on'),times[i]))));
     onClean((id=>()=>clearTimeout(id))(setTimeout(()=>{ fade(bed,.3,1); finish(); },19500))); }
  }
 };

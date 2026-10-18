@@ -488,7 +488,7 @@ const LANES={
   function answer(){ if(answered) return; answered=true; audio(); clearInterval(rings); stop(ringH); pad.remove(); $('#verb').style.display='none'; $('#hud').textContent='';
     fade(bed,.1,.6); play('gordon',1).then(h=>voice=h);
     const Q=document.createElement('div'); Q.className='quotes'; Q.innerHTML='<p>I have ideas. You have follow-through.</p><p>I cannot point to a single major thing I have built in this industry without your fingerprints somewhere on it.</p><p>You did not have to give me your home. You gave it to me anyway.</p><small>Gordon</small>'; P().appendChild(Q);
-    [600,4200,11500,17000].forEach((t,i)=>timers.push(setTimeout(()=>Q.children[i].classList.add('on'),t))); timers.push(setTimeout(()=>{ fade(bed,.3,1); finish(); },19500)); }
+    [1900,5550,13100,17300].forEach((t,i)=>timers.push(setTimeout(()=>Q.children[i].classList.add('on'),t))); timers.push(setTimeout(()=>{ fade(bed,.3,1); finish(); },19500)); }
  }
 };
 

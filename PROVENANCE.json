@@ -255,5 +255,15 @@
   "tool": "higgsfield",
   "prompt": "kling3_0 pro 8s: start = Eric emblem render (job 7927ae21), end = master diorama (job 9bedbc03); glint, enamel turns to water, camera dives into the miniature town",
   "job": "328e2453-45cd-4fe0-acee-7c46a3ab86aa"
+ },
+ "snd/gordon.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "Gordon's cloned voice (voice qb6kL81Flh9FzLNFr8j2, approved by Gordon for Eric 8/1) reading only his own verbatim tribute lines; eleven_v3, flow fQZxK78zqjz6WaGxpOKC",
+  "generation": "q7KMbbXMmaejdIkXg7xv"
+ },
+ "snd/finale.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "75s season-finale with wonder: folk theme, Nordic horn and hardanger-style fiddle as the dragon takes flight, brass lift, tender credits reprise (eleven_music_v2_5, flow fQZxK78zqjz6WaGxpOKC); instrumental verified by transcription",
+  "generation": "VR4v3EuTde0SWyzMqzFr"
  }
 }
