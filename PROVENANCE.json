@@ -1,94 +1,259 @@
 {
- "img/hero.jpg": {
+ "img/master-wide.jpg": {
   "tool": "higgsfield",
-  "prompt": "producer's desk over a Wisconsin lake at autumn sunset (job a9e0715e) gpt_image_2_5"
+  "prompt": "Dragon House (Iverson-Johnson House, 1898) as hero of tilt-shift diorama, mid-restoration, cider barn, 3 bikes, stone doorway, river, skyline+rainbow; nano_banana_pro 2k 16:9",
+  "job": "9bedbc03-679e-4030-a56a-e7c6823d776a",
+  "refs": "painted tilt-shift miniature diorama, style ref job 147e0ade; house refs = Wisconsin Historical Society photos (record 5974) uploaded as media 27af4cc7 + 486793cd"
  },
- "img/house.jpg": {
+ "img/master-tall.jpg": {
   "tool": "higgsfield",
-  "prompt": "historic Victorian house mid-restoration, golden hour (job 8bd0968c)"
+  "prompt": "Recompose master-wide as 9:16, one house only; nano_banana_pro 2k",
+  "job": "6c180a1d-29cd-4810-bf45-140550155826"
+ },
+ "img/house-after.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Close-up of the restored 327 corner porch, fully restored, wreath, pumpkins",
+  "job": "8305051e-c35e-4761-9b98-b1d0d1e9993e"
+ },
+ "img/house-before.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Same composition as house-after, BEFORE restoration: peeling white paint, scraper, ladder",
+  "job": "9f2ae46b-fb8d-4e4c-b8e1-1c06056312ba"
  },
  "img/dad.jpg": {
   "tool": "higgsfield",
-  "prompt": "family front yard at dusk with kids' bikes and chalk hearts (job ef580e62)"
+  "prompt": "Backyard catch, dad from behind in Eric's own black FRANCKSEN 5 jersey (from Gordon photo IMG_2573, described not uploaded)",
+  "job": "11897374-9c97-4d1d-8f29-9f844746041c"
  },
  "img/cider.jpg": {
   "tool": "higgsfield",
-  "prompt": "backyard Cider Camp with wooden press and apples (job d112fbda)"
+  "prompt": "Inside the red barn: wooden cider press, neighbors from behind, amber jars, lanterns",
+  "job": "b6c63d20-1ba1-45e6-a167-0b208a4c6221"
  },
- "img/work.jpg": {
+ "img/grow.jpg": {
   "tool": "higgsfield",
-  "prompt": "office window toward the Wisconsin Capitol with a young plant (job a783ade4)"
+  "prompt": "Young oak on a hill, Madison capitol dome on its isthmus behind",
+  "job": "8dda7682-962d-4100-bbd9-a699ce36282c"
  },
- "img/dragon.jpg": {
+ "img/portal.jpg": {
   "tool": "higgsfield",
-  "prompt": "carved dragon D&D table by candlelight (job eb2aee8c)"
+  "prompt": "Stone-block doorway igniting into a blocky voxel landscape (Gordtopia nod), original design",
+  "job": "dd345bd8-0277-44c5-90fe-65a9d5c7bb3f"
  },
- "img/craft.jpg": {
+ "img/pride.jpg": {
   "tool": "higgsfield",
-  "prompt": "voxel world with castle house, lantern road and cube sheep (job 2ba5b4f1)"
+  "prompt": "Miniature big-city pride parade, rainbow flags, friends from behind, one in a USA soccer jersey",
+  "job": "f04ffcfb-9f38-4b3d-a4b2-7357d9e17fe3"
  },
- "img/call.jpg": {
+ "img/porch.jpg": {
   "tool": "higgsfield",
-  "prompt": "phone with incoming call on a porch railing over a lake at twilight (job 27080404)"
+  "prompt": "The curved porch at blue hour, porch light, cider mug and glowing phone on the rail",
+  "job": "49305bfc-ff30-4e11-9865-153fe573e1a7"
+ },
+ "img/table.jpg": {
+  "tool": "higgsfield",
+  "prompt": "The Dragon Table dining room per Gordon photo IMG_1481 (described in text, no photo uploaded): rose-pink walls, oak trim, brass chandelier, black cabinets with dragon figurines, hex-tile space game, d20",
+  "job": "77165946-25db-4638-bb92-75ad37ac582e"
+ },
+ "img/ship.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Master scene with a small original frontier ship high in the sky",
+  "job": "ff4c1396-7b3c-4b80-9b9e-a2d7d1b2da9b"
+ },
+ "img/ship.png": {
+  "tool": "higgsfield",
+  "prompt": "Original rugged ship isolated on white (job ea6759ac), then Higgsfield remove_background (job 4a70b005); cropped",
+  "job": "4a70b005-8412-4d01-a6cb-b622a30c0685"
+ },
+ "img/patch.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Embroidered SHINY / STOUGHTON, WIS. patch: original ship over golden maple leaf and the house",
+  "job": "54dd6a11-c7b4-4eb9-a86a-f71ae19bab5e"
  },
  "img/finale.jpg": {
   "tool": "higgsfield",
-  "prompt": "restored house at night, fireworks, lit marquee (job 26ac1346)"
+  "prompt": "Night version, restoration complete (no scaffold), fireworks over the river",
+  "job": "a3000895-96d3-4a2a-886d-cf289b12ac52"
  },
  "snd/bed.mp3": {
   "tool": "elevenlabs",
-  "prompt": "cozy acoustic folk loop, eleven_music_v2_5, 2s crossfade baked (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "90s warm Midwestern autumn folk loop, D major, 84 BPM (eleven_music_v2_5, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "UbzGIQywe12bWjBucvsL"
  },
- "snd/done.mp3": {
+ "snd/scrape.mp3": {
   "tool": "elevenlabs",
-  "prompt": "task-complete chime (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "paint scraper stroke on clapboard (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "kI5u6pqP7PizQTgXwXLF"
  },
  "snd/paint.mp3": {
   "tool": "elevenlabs",
-  "prompt": "paint roller on clapboard (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "wet brush stroke on siding (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "kpGHKUXks7DWxOortHZP"
  },
- "snd/kids.mp3": {
+ "snd/catch.mp3": {
   "tool": "elevenlabs",
-  "prompt": "kids laughing, bicycle bell (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "foam ball caught in glove + kid giggle (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "FYthIOj1AsslFb42k2c4"
  },
- "snd/cider.mp3": {
+ "snd/press.mp3": {
   "tool": "elevenlabs",
-  "prompt": "cider pour and jar clink (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "cider press screw creak + crush + pour (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "tE7XyvwWls2lpJeLO9Pr"
  },
- "snd/grow.mp3": {
+ "snd/jar.mp3": {
   "tool": "elevenlabs",
-  "prompt": "rising growth chime (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "cider into mason jar, lid click (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "GgpZXJ8DRwejoOakeL7b"
  },
  "snd/d20.mp3": {
   "tool": "elevenlabs",
-  "prompt": "d20 roll and table cheer (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "resin d20 on felt-lined wood table (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "Os0X5qSzs9gIr4xLRhJL"
  },
- "snd/dragon.mp3": {
+ "snd/nat20.mp3": {
   "tool": "elevenlabs",
-  "prompt": "friendly dragon roar (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "critical-success fantasy sting (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "0JNiXosOU7SJHP36Rq3U"
  },
- "snd/blocks.mp3": {
+ "snd/portal.mp3": {
   "tool": "elevenlabs",
-  "prompt": "voxel blocks placed, level-up jingle (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "stone block thunk + doorway ignite (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "peR6NxjDZ9Ov3OiCfKjD"
+ },
+ "snd/parade.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "pride parade drums, crowd, confetti cannons (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "BXo8JEgIdL1mjlXwZlee"
  },
  "snd/ring.mp3": {
   "tool": "elevenlabs",
-  "prompt": "marimba ringtone (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "friendly marimba ringtone, answer click (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "pzHwZop3NFrGcrkECeNj"
  },
- "snd/clap.mp3": {
+ "snd/grow.mp3": {
   "tool": "elevenlabs",
-  "prompt": "clapperboard (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "oak growing, leaves, rising marimba (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "1sWlR2Z452xG6QRwxVhf"
+ },
+ "snd/ship.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "small rugged ship flyby + twangy guitar phrase (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "3cEVo1aYZ3vahkS4S7iD"
+ },
+ "snd/done.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "marimba two-note rise + glockenspiel + town bell (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "h7omH189qXOFgq82q75H"
  },
  "snd/fireworks.mp3": {
   "tool": "elevenlabs",
-  "prompt": "fireworks over a lake with cheers (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "small-town fireworks over river + cheering (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "1K5J4Kx9lTkCbnKwsErB"
+ },
+ "snd/grill.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "grill lid creak, sizzle, drumroll stop (eleven_text_to_sound_v2, ElevenLabs flow fQZxK78zqjz6WaGxpOKC)",
+  "generation": "hWNeWUOcYLlGpPEVRPh4"
  },
  "snd/ovation.mp3": {
   "tool": "elevenlabs",
-  "prompt": "theater standing ovation (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "theater standing ovation (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
  },
- "snd/finale.mp3": {
+ "snd/clap.mp3": {
   "tool": "elevenlabs",
-  "prompt": "premiere finale score, eleven_music_v2_5 60s (flow YYvwVc9bMqFyQyzoONjF)"
+  "prompt": "clapperboard (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "snd/finale-v2.mp3": {
+  "tool": "elevenlabs",
+  "prompt": "premiere finale score, eleven_music_v2_5 60s (carried from v2, flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "img/pc/master.jpg": {
+  "tool": "higgsfield",
+  "prompt": "= img/master-wide at 2560",
+  "job": "9bedbc03-679e-4030-a56a-e7c6823d776a"
+ },
+ "img/pc/finale.jpg": {
+  "tool": "higgsfield",
+  "prompt": "= img/finale at 2560",
+  "job": "a3000895-96d3-4a2a-886d-cf289b12ac52"
+ },
+ "img/pc/house-after.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide restored 327 house front",
+  "job": "0e3cdc70-9e66-4e99-9d68-d9d47e3da810"
+ },
+ "img/pc/house-before.jpg": {
+  "tool": "higgsfield",
+  "prompt": "gpt_image_2_5 edit of house-after to pre-restoration peeling white (job 4fb4781f), Higgsfield upscale (job bb572164), aligned to after",
+  "job": "bb572164-6562-4f9d-9a0c-e87e7ae6e057"
+ },
+ "img/pc/dad.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide backyard catch, dad in black FRANCKSEN 5 jersey",
+  "job": "6c615d1b-129c-4c85-b399-03b543891eae"
+ },
+ "img/pc/cider.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide cider barn",
+  "job": "ef7c9059-f5b4-43b3-ae54-5d54841f4c3b"
+ },
+ "img/pc/grow.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide oak with Madison capitol",
+  "job": "4fb5e451-b7d7-4ef9-91cc-65dc4e8e3bf6"
+ },
+ "img/pc/portal.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide stone doorway portal",
+  "job": "f72e3f75-b928-4b74-a164-54842ecc1194"
+ },
+ "img/pc/pride.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide pride parade",
+  "job": "27fc72c2-ceac-4e15-956e-7d62e41482af"
+ },
+ "img/pc/porch.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide porch at night with phone",
+  "job": "e59c44e2-bec2-41d7-b3c5-141339d453e3"
+ },
+ "img/pc/table.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide Dragon Table room",
+  "job": "42beb96f-b0a1-4825-9ef1-9cd519afb8e6"
+ },
+ "video/town.mp4": {
+  "tool": "higgsfield",
+  "prompt": "kling3_0 pro 10s, start=end frame = master job 9bedbc03 (seamless loop): leaves drift, lanterns flicker, river flows, locked camera",
+  "job": "7e69e078-35e4-44b9-b333-11617d0e4416"
+ },
+ "img/mainstreet.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Stoughton-style main street, Norwegian + US flags on lampposts (per Gordon photo IMG_1533), town applauding",
+  "job": "d0d98953-79f5-4922-bcef-4f870bf67746"
+ },
+ "img/pc/mainstreet.jpg": {
+  "tool": "higgsfield",
+  "prompt": "Wide main street curtain call, Norwegian + US flags",
+  "job": "a3e9f92e-83df-4f75-b363-1d674774778a"
+ },
+ "img/seal.png": {
+  "tool": "higgsfield",
+  "prompt": "Faithful frontal render of the Dragon House emblem, designed by Eric (Gordon photo 21:27, cropped, hand excluded; media 139bf74b) via gpt_image_2_5 job 7927ae21, background removed job 8264dd1f",
+  "job": "8264dd1f-d2f6-481a-971f-0a8bc0460906"
+ },
+ "img/seal-poster.jpg": {
+  "tool": "derived:img/seal.png",
+  "prompt": "seal.png centered on night color for the intro video poster"
+ },
+ "video/dragon.mp4": {
+  "tool": "higgsfield",
+  "prompt": "seedance_2_5 omni_reference 10s 1080p: start = night finale (job a3000895), ref = Eric emblem render (job 7927ae21); the emblem dragon comes alive, soars over the river and fireworks, curls around the chimney",
+  "job": "8d77c071-b6c9-4fd2-811f-fdc2a50cb14e"
+ },
+ "video/opening.mp4": {
+  "tool": "higgsfield",
+  "prompt": "kling3_0 pro 8s: start = Eric emblem render (job 7927ae21), end = master diorama (job 9bedbc03); glint, enamel turns to water, camera dives into the miniature town",
+  "job": "328e2453-45cd-4fe0-acee-7c46a3ab86aa"
  }
 }

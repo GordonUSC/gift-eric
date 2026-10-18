@@ -1,10 +1,10 @@
 {
- "person_made_it": "Eric's whole year on his own board structure: Groups Home, Family, Community, Work, Play, Friendship; items with Owner, Timeline, Status, a latest update, MoSCoW priority and a Definition of Done. Every item is something Gordon named: the historic house, being Dad, Cider Camp, healthy growth at work, the Dragon House, Gordtopia, the calls.",
- "emcee_who_is_speaking": "Darby, openly, with love from Gordon.",
- "what_time_of_day_is_this_room": "golden hour on the board, twilight in the scenes, premiere night at the end",
- "did_the_click_pay_me": "each status opens a scene with its own play (paint the house, pour cider, grow the plant, roll a natural 20, build blocks, answer Gordon's call); all seven green triggers a clapperboard, a montage, a marquee that lights his name, fireworks, a 40 second credits roll to a live score and a standing ovation",
- "works_for_the_recipient": "Phone-first, tested in Safari and Chrome engines.",
- "taught_me_something": "the latest-update bubbles speak his own tool's language back to him",
- "told_me_the_truth": "only what Gordon named; Magic Castle removed because Eric was not there; no names of his children on a public page",
- "weakest": "scene interactions are simple taps rather than richer gestures"
+ "person_made_it": "Yes: Gordon's own photos and words drive it; the real 1898 house, Eric's emblem, his jersey, his board's columns; Darby built it, dot shaped the play.",
+ "emcee_who_is_speaking": "Eric's own board speaks in his format; Gordon speaks only in his verbatim tribute lines; nothing is put in Eric's mouth except his own GDC quote.",
+ "what_time_of_day_is_this_room": "Golden hour in Stoughton for play, night with fireworks for the finale, blue hour on the porch for the call.",
+ "did_the_click_pay_me": "Every lane pays with a different verb and a reveal: the paint lifts, the portal lights, a nat 20, the emblem dragon flies; tested to Done with real input.",
+ "works_for_the_recipient": "Eric chooses PC or phone; PC passed all 8 lanes in Chromium 1440x900, phone in WebKit 390; nothing is locked behind a win.",
+ "taught_me_something": "His house is the Iverson-Johnson House, 1898, A. E. Ovren, National Register 1988; the emblem is his own design.",
+ "told_me_the_truth": "Every fact traces to a memory file, Gordon's photos or the Historical Society record; unknowns (the Dragon Table photo's exact table, the jersey's meaning) are not claimed.",
+ "weakest": "Gordon's voice and the new finale score wait on ElevenLabs credits; until then the call is text and the finale uses the v2 score."
 }
