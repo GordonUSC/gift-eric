@@ -352,5 +352,19 @@
  "v2/snd/finale.mp3": {
   "tool": "elevenlabs",
   "prompt": "premiere finale score, eleven_music_v2_5 60s (flow YYvwVc9bMqFyQyzoONjF)"
+ },
+ "keepsake/eric-keepsake-5x7.pdf": {
+  "tool": "canva",
+  "note": "Season-wrap keepsake card; dot's layout, Darby swapped in the real house art (img/master-wide.jpg) and Eric's emblem (img/seal.png); footer merged with dot's line",
+  "exported": "2026-10-17 23:1x PT",
+  "format": "pdf, 1 page, pro",
+  "design_id": "DAHYU1dxvfs"
+ },
+ "keepsake/eric-keepsake.jpg": {
+  "tool": "canva",
+  "note": "Season-wrap keepsake card; dot's layout, Darby swapped in the real house art (img/master-wide.jpg) and Eric's emblem (img/seal.png); footer merged with dot's line",
+  "exported": "2026-10-17 23:1x PT",
+  "format": "png 1500x2100 export, converted to jpeg q88 for phones",
+  "design_id": "DAHYU1dxvfs"
  }
 }
