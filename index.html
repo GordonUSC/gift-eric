@@ -186,6 +186,19 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 #stamp.go{display:block;animation:stampdown .7s cubic-bezier(.3,1.5,.5,1) forwards}
 @keyframes stampdown{0%{transform:translate(-50%,-50%) scale(2.6) rotate(-14deg);opacity:0}55%{opacity:1}75%{transform:translate(-50%,-50%) scale(.92) rotate(2deg)}100%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:0}}
 .endseal{width:min(220px,40vw);display:block;margin:0 auto 18px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.5))}
+
+/* FIREFLY / ECLIPSE / SKY SHIP (10/18) */
+#shinyfilm{position:fixed;inset:0;z-index:95;background:#000;display:none;place-items:center;cursor:pointer}
+#shinyfilm.on{display:grid}
+#shinyfilm video{width:100%;height:100%;object-fit:cover}
+#shinyfilm .cap{position:absolute;left:0;right:0;bottom:8%;text-align:center;font:400 clamp(26px,4vw,52px)/1.1 var(--serif,Georgia);color:#fff;text-shadow:0 3px 18px rgba(0,0,0,.85);pointer-events:none}
+#galleon{position:fixed;top:9%;left:-14vw;width:min(13vw,120px);z-index:38;cursor:pointer;opacity:0;filter:drop-shadow(0 6px 10px rgba(0,0,0,.25))}
+#galleon.sail{animation:sail 34s linear forwards}
+@keyframes sail{0%{transform:translate(0,0);opacity:0}6%{opacity:.95}50%{transform:translate(64vw,-2vh)}94%{opacity:.95}100%{transform:translate(128vw,1vh);opacity:0}}
+#hexclaim{position:fixed;left:50%;top:44%;transform:translate(-50%,-50%) scale(.6);z-index:60;opacity:0;pointer-events:none;transition:transform .7s cubic-bezier(.2,.9,.2,1),opacity .5s}
+#hexclaim.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+@media (prefers-reduced-motion:reduce){#galleon{display:none}}
+@media (max-width:700px){#hexclaim{top:64%;width:200px;height:186px}}
 </style>
 </head>
 <body>
@@ -203,6 +216,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 <li><b>You.</b> Take a bow. Status: Done.</li>
 
 <li><b>Keepsake.</b> <a href="keepsake/eric-keepsake-5x7.pdf">Your card, 5x7 print-ready</a> (or <a href="keepsake/eric-keepsake.jpg">the picture</a>).</li>
+<li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
 </ul>
 <p><b>Definition of Done:</b> every item green, and Eric knows how much it all means. Status: Loved.</p></div></noscript>
 
@@ -277,7 +291,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
     <div class="k">Restoration</div><div class="v">The Iverson-Johnson House, 1898</div>
     <div class="k">Original architect</div><div class="v">A. E. Ovren</div>
     <div class="k">Head of Dad</div><div class="v">to James, Henry, and Oscar</div>
-    <div class="k">Keeper of chronological order</div><div class="v">Crystal</div>
+    <div class="k">Keeper of chronological order</div><div class="v">Crystal</div><div class="k">The love of his life</div><div class="v">Crystal</div><div class="k">Town pharmacist, Main Street</div><div class="v">Crystal, looking after all of Stoughton</div><div class="k">Across the galaxy, at the Dragon Table</div><div class="v">Eclipse: Second Dawn, with Crystal and Gordon</div><div class="k">Browncoat in residence</div><div class="v">Eric Francksen</div><div class="k">Founder</div><div class="v"><a href="skyship/" style="color:inherit">Sky Ship Studios, Madison, 2014. The chapter that built the rest.</a></div>
     <div class="k">Community Producer</div><div class="v">Cider Camp</div>
     <div class="k">At the Dragon Table</div><div class="v">every legend who pulled up a chair</div>
     <div class="k">Master Builders</div><div class="v">Gordtopia, where all roads lead home</div>
@@ -287,7 +301,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
     <div class="k">Set in</div><div class="v">Stoughton, Wisconsin</div>
     <div class="v" id="lastcredit" style="display:none;margin-top:30px">Including the last little thing.</div>
     <div class="big" style="margin-top:60px">For the worlds you make.</div><div class="big" style="margin-top:40px">For the people you bring together.</div><div class="big" style="margin-top:40px">And for the details.</div>
-    <div class="k">With all his love</div><div class="big">Gordon</div>
+    <div class="big" style="margin-top:40px">Keep flying.</div><div class="k">With all his love</div><div class="big">Gordon</div>
   </div>
   <div class="end" id="end"><div>
     <img class="endseal" src="img/seal.png" alt="The Dragon House emblem, designed by Eric"><div class="loved">Status: Loved</div>
@@ -299,12 +313,15 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 
 <div class="modal" id="modal"><div class="box"><img id="mimg" alt=""><h3 id="mh"></h3><p id="mp"></p><button class="go" id="mclose" type="button">Keep flying</button></div></div>
 
-<div id="curtain" role="dialog" aria-label="Curtain call"><img id="curtainimg" alt="Stoughton main street, Norwegian and American flags on the lampposts, the whole town applauding."><div class="cap">Stoughton applauds.<small>Bow taken. You earned every bit of this. Tap to return.</small></div></div>
+<div id="curtain" role="dialog" aria-label="Curtain call"><img id="curtainimg" alt="Stoughton main street, Norwegian and American flags on the lampposts, the whole town applauding."><div class="cap">Stoughton applauds.<small>Bow taken. You earned every bit of this. And there on Main Street, Crystal’s pharmacy, looking after the whole town. Tap to return.</small></div></div>
+<div id="shinyfilm" role="dialog" aria-label="The little ship over the Dragon House"><video id="shinyvid" src="video/shiny.mp4" poster="img/shiny.jpg" playsinline preload="none"></video><div class="cap">Shiny.</div></div>
+<img id="galleon" src="img/galleon.png" alt="A watercolor sky ship sailing past. Tap to follow it." role="link" tabindex="0">
+<svg id="hexclaim" width="260" height="240" viewBox="0 0 260 240" aria-hidden="true"><polygon points="130,8 238,66 238,174 130,232 22,174 22,66" fill="#0e1b33" stroke="#ffd479" stroke-width="4"/><circle cx="130" cy="64" r="9" fill="#ffd479"/><circle cx="92" cy="138" r="26" fill="#3b82f6" stroke="#fff" stroke-width="3"/><circle cx="168" cy="138" r="26" fill="#e0457b" stroke="#fff" stroke-width="3"/><circle cx="130" cy="192" r="26" fill="#22c55e" stroke="#fff" stroke-width="3"/><text x="92" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">E</text><text x="168" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">C</text><text x="130" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">G</text></svg>
 <img id="stamp" src="img/seal.png" alt="">
 <script>
 // Sound: every file is ElevenLabs (see PROVENANCE.json). Code only mixes: gain, loop, fades.
 const $=s=>document.querySelector(s);
-const SND=['bed','done','scrape','paint','catch','press','jar','d20','nat20','portal','parade','ring','grow','ship','fireworks','grill','ovation','clap','finale','finale-v2','gordon'];
+const SND=['bed','done','scrape','paint','catch','press','jar','d20','nat20','portal','parade','ring','grow','ship','fireworks','grill','ovation','clap','finale','finale-v2','gordon','sting'];
 let ac=null,master=null,bufs={},bed=null,muted=false;
 function audio(){ if(!ac){ try{ ac=new (window.AudioContext||window.webkitAudioContext)(); master=ac.createGain(); master.gain.value=.9; master.connect(ac.destination); SND.forEach(load);}catch(e){} } if(ac&&ac.state==='suspended') ac.resume(); return ac; }
 async function load(n){ if(bufs[n]!==undefined) return bufs[n]; bufs[n]=null; try{ const r=await fetch('snd/'+n+'.mp3'); if(!r.ok) throw 0; const a=await r.arrayBuffer(); bufs[n]=await new Promise((ok,no)=>ac.decodeAudioData(a,ok,no)); }catch(e){ bufs[n]=false; } return bufs[n]; }
@@ -375,7 +392,7 @@ $('#grill').onclick=e=>{ e.stopPropagation(); audio(); play('grill',.8); toast('
 
 // SHIP (shiny)
 function flyShip(){ const s=$('#ship'); if(st.shiny||s.classList.contains('fly')) return; s.classList.remove('fly'); void s.offsetWidth; s.classList.add('fly'); play('ship',.85); s.addEventListener('animationend',()=>s.classList.remove('fly'),{once:true}); }
-$('#ship').onclick=()=>{ st.shiny=true; save(); $('#ship').classList.remove('fly'); play('nat20',.6); $('#mimg').src='img/patch.jpg'; $('#mimg').alt='An embroidered patch: a little frontier ship over a golden maple leaf and the Dragon House, reading Shiny, Stoughton, Wis.'; $('#mh').textContent='Shiny.'; $('#mp').textContent='You found the little ship. Some things are worth looking up for.'; $('#modal').classList.add('on'); };
+$('#ship').onclick=()=>shinyFilm(()=>{ st.shiny=true; save(); $('#ship').classList.remove('fly'); play('nat20',.6); $('#mimg').src='img/patch.jpg'; $('#mimg').alt='An embroidered patch: a little frontier ship over a golden maple leaf and the Dragon House, reading Shiny, Stoughton, Wis.'; $('#mh').textContent='Shiny.'; $('#mp').textContent='You found the little ship. Some things are worth looking up for.'; $('#modal').classList.add('on'); });
 $('#mclose').onclick=()=>$('#modal').classList.remove('on');
 
 function curtain(){ const c=$('#curtain'); $('#curtainimg').src='img/mainstreet.jpg'; c.classList.add('on'); c.onclick=()=>c.classList.remove('on'); clearTimeout(c._t); c._t=setTimeout(()=>c.classList.remove('on'),6500); }
@@ -461,7 +478,7 @@ const LANES={
   $('#hud').textContent='DC '+DCS[0]+'. Roll to beat it.';
   const roll=()=>{ if(busy||r>=3) return; busy=true; audio(); play('d20',.9); const d=$('#d20'); d.classList.remove('spin'); void d.getBBox(); d.classList.add('spin');
     const res=r===2?20:DCS[r]+1+Math.floor(Math.random()*(19-DCS[r])); let k=0; const iv=setInterval(()=>{ $('#d20n').textContent=1+Math.floor(Math.random()*20); if(++k>12){ clearInterval(iv); $('#d20n').textContent=res;
-      if(res===20){ play('nat20',.9); FX.burst(innerWidth/2,innerHeight/2,GOLD,90,'dot',1.4); $('#hud').textContent='NATURAL 20. Critical success.'; setTimeout(finish,1400); }
+      if(res===20){ play('nat20',.9); FX.burst(innerWidth/2,innerHeight/2,GOLD,90,'dot',1.4); $('#hud').textContent='NATURAL 20. Big damn heroes.'; eclipseClaim(); setTimeout(finish,1400); }
       else { play('done',.6); $('#hud').textContent=res+' beats DC '+DCS[r]+'. Next: DC '+DCS[r+1]+'.'; } r++; busy=false; } },60); };
   $('#rollbtn').onclick=roll; $('#d20').addEventListener('click',roll);
  },
@@ -538,11 +555,22 @@ async function premiere(){ audio(); show('finale'); fade(bed,0,.6);
   dv.style.display='block'; dv.currentTime=0; dv.onended=startRoll; dv.onerror=startRoll; dv.play().catch(startRoll); setTimeout(()=>{ if(dv.style.display!=='none') startRoll(); },12500);
   const CO=['#e8a33a','#2f6b3f','#7a1f2b','#ef6c00','#1565c0','#ffd479','#fff'];
   let k=0; const iv=setInterval(()=>{ FX2.burst(innerWidth*(.2+Math.random()*.6),innerHeight*(.12+Math.random()*.25),CO,60,'dot',1.1); if(k%3===0) playT('fireworks',4000,.55); if(++k>26) clearInterval(iv); },1700);
-  $('#roll').addEventListener('animationend',()=>{ $('#end').classList.add('on'); play('ovation',.7); },{once:true});
+  $('#roll').addEventListener('animationend',()=>{ $('#end').classList.add('on'); shinyThenLoved(); play('ovation',.7); },{once:true});
   $('#end').classList.remove('on'); }
 $('#again').onclick=()=>{ st={done:{},shiny:st.shiny}; save(); show('cover'); $('#end').classList.remove('on'); };
 $('#toboard').onclick=()=>{ show('board'); render(); startBed(); };
 render();
+
+// FIREFLY / ECLIPSE / SKY SHIP (10/18)
+function shinyFilm(then){ const f=$('#shinyfilm'), v=$('#shinyvid'); audio(); f.classList.add('on'); try{ v.currentTime=0; const p=v.play(); if(p&&p.catch) p.catch(()=>{}); }catch(e){} play('sting',.9);
+  let done=false; const end=()=>{ if(done) return; done=true; f.classList.remove('on'); try{ v.pause(); }catch(e){} then(); }; v.onended=end; f.onclick=end; setTimeout(end,9000); }
+function summonShip(){ const s=$('#ship'); s.classList.remove('fly'); void s.offsetWidth; s.classList.add('fly'); audio(); play('sting',.8); play('ship',.7); s.addEventListener('animationend',()=>s.classList.remove('fly'),{once:true}); toast('Shiny. The little ship came back for you.',2600); }
+(function(){ let buf=''; addEventListener('keydown',e=>{ if(e.key&&e.key.length===1){ buf=(buf+e.key.toLowerCase()).slice(-5); if(buf==='shiny') summonShip(); } }); })();
+(function(){ let n=0,t=0; document.addEventListener('click',e=>{ const im=e.target.closest('img.seal'); if(!im) return; const now=Date.now(); n=(now-t<900)?n+1:1; t=now; if(n>=3){ n=0; summonShip(); } }); })();
+function eclipseClaim(){ const h=$('#hexclaim'); h.classList.add('on'); toast('Second Dawn: Eric, Crystal and Gordon claim the sector.',3200); setTimeout(()=>h.classList.remove('on'),2600); }
+function shinyThenLoved(){ const l=document.querySelector('#end .loved'); if(!l) return; const t=l.textContent; l.textContent='Status: Shiny'; setTimeout(()=>{ l.textContent=t; },1400); }
+(function(){ const g=$('#galleon'); if(!g) return; const go=()=>{ location.href='skyship/'; }; g.addEventListener('click',go); g.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
+  const sail=()=>{ g.classList.remove('sail'); void g.offsetWidth; g.classList.add('sail'); }; setTimeout(sail,18000); setInterval(sail,60000); })();
 </script>
 </body>
 </html>
