@@ -55,11 +55,6 @@
   "prompt": "The Dragon Table dining room per Gordon photo IMG_1481 (described in text, no photo uploaded): rose-pink walls, oak trim, brass chandelier, black cabinets with dragon figurines, hex-tile space game, d20",
   "job": "77165946-25db-4638-bb92-75ad37ac582e"
  },
- "img/ship.jpg": {
-  "tool": "higgsfield",
-  "prompt": "Master scene with a small original frontier ship high in the sky",
-  "job": "ff4c1396-7b3c-4b80-9b9e-a2d7d1b2da9b"
- },
  "img/ship.png": {
   "tool": "higgsfield",
   "prompt": "Original rugged ship isolated on white (job ea6759ac), then Higgsfield remove_background (job 4a70b005); cropped",
