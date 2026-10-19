@@ -199,7 +199,23 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 #hexclaim.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
 @media (prefers-reduced-motion:reduce){#galleon{display:none}}
 @media (max-width:700px){#hexclaim{top:64%;width:200px;height:186px}}
-</style>
+
+/* BONUS ROUND (10/19) */
+#bonus{position:fixed;inset:0;z-index:60;display:none;background:rgba(9,18,24,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);overflow:auto;padding:min(6vh,64px) min(5vw,72px)}
+#bonus.on{display:block}
+#bonus h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,3.4vw,60px);color:var(--cream);margin:0 0 6px}
+#bonus .bsub{color:#c9d6d0;font-size:18px;margin:0 0 28px}
+#bonus .bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:26px}
+#bonus a.bc{display:block;text-decoration:none;color:var(--cream);background:#13232b;border:1px solid rgba(233,196,106,.35);border-radius:10px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+#bonus a.bc:hover,#bonus a.bc:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 2px #e9c46a;border-color:#e9c46a;outline:none}
+#bonus a.bc img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+#bonus a.bc div{padding:16px 18px 18px}
+#bonus a.bc b{display:block;font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:6px}
+#bonus a.bc p{margin:0;font-size:16px;line-height:1.45;color:#d6e2dc}
+#bonus a.bc i{float:right;font-style:normal;font:700 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:rgba(233,196,106,.18);color:#e9c46a;padding:7px 10px;border-radius:99px}
+#bonus a.bc kbd{font:700 13px/1 var(--sans);border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:3px 7px;margin-right:8px;color:#fff}
+#bonus .bclose{position:fixed;top:22px;right:26px;min-width:48px;min-height:48px;border-radius:99px;border:1px solid rgba(255,255,255,.4);background:#13232b;color:#fff;font-size:22px;cursor:pointer}
+@media(max-width:600px){#bonus{padding:72px 16px 32px}#bonus a.bc kbd{display:none}}</style>
 </head>
 <body>
 <noscript><div style="position:relative;z-index:99;background:#fffdf8;color:#1b2a30;padding:24px 18px;font:16px/1.5 system-ui,sans-serif;max-width:720px;margin:0 auto">
@@ -216,7 +232,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 <li><b>You.</b> Take a bow. Status: Done.</li>
 
 <li><b>Keepsake.</b> <a href="keepsake/eric-keepsake-5x7.pdf">Your card, 5x7 print-ready</a> (or <a href="keepsake/eric-keepsake.jpg">the picture</a>).</li>
-<li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
+<li><b>Bonus round.</b> <a href="play/dragon-house-blocks/">Dragon House in Blocks</a>, <a href="play/rosemaling/">Rosemaling</a>, <a href="play/un-gloom/">Un-Gloom</a>.</li><li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
 </ul>
 <p><b>Definition of Done:</b> every item green, and Eric knows how much it all means. Status: Loved.</p></div></noscript>
 
@@ -257,6 +273,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
     <div class="table" id="rows"></div>
     <div class="dod"><b>Definition of Done:</b> every item green, and Eric knows how much it all means.</div>
     <p class="credit" style="margin-top:12px;opacity:.95">You don't have to finish everything to be celebrated. <button type="button" id="peek" style="text-decoration:underline;font-weight:700">See tonight's town</button></p>
+    <p style="margin:14px 0 0"><button class="go" type="button" data-bonus style="background:#e9c46a;color:#13232b">Bonus round: new games</button></p>
     <div class="premiere" id="premiere"><button class="go" id="gopremiere" type="button">Roll the season finale</button></div>
     <p class="credit">Made by Darby, Gordon's AI assistant, with Gordon's whole heart. Play design with dot. Art by Higgsfield, sound by ElevenLabs.</p>
   </div>
@@ -318,6 +335,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 <img id="galleon" src="img/galleon.png" alt="A watercolor sky ship sailing past. Tap to follow it." role="link" tabindex="0">
 <svg id="hexclaim" width="260" height="240" viewBox="0 0 260 240" aria-hidden="true"><polygon points="130,8 238,66 238,174 130,232 22,174 22,66" fill="#0e1b33" stroke="#ffd479" stroke-width="4"/><circle cx="130" cy="64" r="9" fill="#ffd479"/><circle cx="92" cy="138" r="26" fill="#3b82f6" stroke="#fff" stroke-width="3"/><circle cx="168" cy="138" r="26" fill="#e0457b" stroke="#fff" stroke-width="3"/><circle cx="130" cy="192" r="26" fill="#22c55e" stroke="#fff" stroke-width="3"/><text x="92" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">E</text><text x="168" y="146" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">C</text><text x="130" y="200" text-anchor="middle" font-family="Georgia,serif" font-size="24" fill="#fff">G</text></svg>
 <img id="stamp" src="img/seal.png" alt="">
+<div id="bonus" role="dialog" aria-label="Bonus round"><button class="bclose" type="button" aria-label="Close">×</button><h2>Bonus round</h2><p class="bsub">New games for Eric, because he is doing the most. Pick one, keys 1 to 5 work too.</p><div class="bgrid"></div></div>
 <script>
 // Sound: every file is ElevenLabs (see PROVENANCE.json). Code only mixes: gain, loop, fades.
 const $=s=>document.querySelector(s);
@@ -571,6 +589,17 @@ function eclipseClaim(){ const h=$('#hexclaim'); h.classList.add('on'); toast('S
 function shinyThenLoved(){ const l=document.querySelector('#end .loved'); if(!l) return; const t=l.textContent; l.textContent='Status: Shiny'; setTimeout(()=>{ l.textContent=t; },1400); }
 (function(){ const g=$('#galleon'); if(!g) return; const go=()=>{ location.href='skyship/'; }; g.addEventListener('click',go); g.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
   const sail=()=>{ g.classList.remove('sail'); void g.offsetWidth; g.classList.add('sail'); }; setTimeout(sail,18000); setInterval(sail,60000); })();
+
+// BONUS ROUND (10/19)
+(function(){const B=[
+ {s:'dragon-house-blocks',t:'Dragon House in Blocks',d:'Build the Iverson-Johnson House block by block, light it up at night, and welcome home 3,425 villagers.',k:'3D build'},
+ {s:'rosemaling',t:'Rosemaling',d:'Paint Stoughton-style folk art on your own dragon-prow, every stroke a fiddle note. Frame it for the wall.',k:'Paint'},
+ {s:'un-gloom',t:'Un-Gloom',d:'For Sky Ship Studios. Stack the cards to make the Francksens happier, not gloomier.',k:'Cards'}
+/*BONUS-MORE*/];const ov=document.getElementById('bonus');if(!ov)return;const g=ov.querySelector('.bgrid');
+g.innerHTML=B.map((x,i)=>`<a class="bc" href="play/${x.s}/"><img src="play/thumbs/${x.s}.jpg" alt="" loading="lazy"><div><i>${x.k}</i><b>${x.t}</b><p><kbd>${i+1}</kbd>${x.d}</p></div></a>`).join('');
+const open=()=>{ov.classList.add('on');const a=g.querySelector('a');a&&a.focus();},close=()=>ov.classList.remove('on');
+document.querySelectorAll('[data-bonus]').forEach(b=>b.addEventListener('click',open));ov.querySelector('.bclose').addEventListener('click',close);
+addEventListener('keydown',e=>{if(!ov.classList.contains('on'))return;if(e.key==='Escape')close();const n=+e.key;if(n>=1&&n<=B.length)location.href='play/'+B[n-1].s+'/';});})();
 </script>
 </body>
 </html>

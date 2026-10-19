@@ -185,6 +185,22 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 #hexclaim.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
 @media (prefers-reduced-motion:reduce){#galleon{display:none}}
 @media (max-width:700px){#hexclaim{top:64%;width:200px;height:186px}}
+
+/* BONUS ROUND (10/19) */
+#bonus{position:fixed;inset:0;z-index:60;display:none;background:rgba(9,18,24,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);overflow:auto;padding:min(6vh,64px) min(5vw,72px)}
+#bonus.on{display:block}
+#bonus h2{font-family:var(--serif);font-weight:400;font-size:clamp(38px,3.4vw,60px);color:var(--cream);margin:0 0 6px}
+#bonus .bsub{color:#c9d6d0;font-size:18px;margin:0 0 28px}
+#bonus .bgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:26px}
+#bonus a.bc{display:block;text-decoration:none;color:var(--cream);background:#13232b;border:1px solid rgba(233,196,106,.35);border-radius:10px;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s}
+#bonus a.bc:hover,#bonus a.bc:focus-visible{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.5),0 0 0 2px #e9c46a;border-color:#e9c46a;outline:none}
+#bonus a.bc img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover}
+#bonus a.bc div{padding:16px 18px 18px}
+#bonus a.bc b{display:block;font-family:var(--serif);font-weight:400;font-size:28px;margin-bottom:6px}
+#bonus a.bc p{margin:0;font-size:16px;line-height:1.45;color:#d6e2dc}
+#bonus a.bc i{float:right;font-style:normal;font:700 13px/1 var(--sans);letter-spacing:.06em;text-transform:uppercase;background:rgba(233,196,106,.18);color:#e9c46a;padding:7px 10px;border-radius:99px}
+#bonus a.bc kbd{font:700 13px/1 var(--sans);border:1px solid rgba(255,255,255,.4);border-radius:4px;padding:3px 7px;margin-right:8px;color:#fff}
+#bonus .bclose{position:fixed;top:22px;right:26px;min-width:48px;min-height:48px;border-radius:99px;border:1px solid rgba(255,255,255,.4);background:#13232b;color:#fff;font-size:22px;cursor:pointer}
 </style>
 </head>
 <body>
@@ -202,7 +218,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 <li><b>You.</b> Take a bow. Status: Done.</li>
 
 <li><b>Keepsake.</b> <a href="keepsake/eric-keepsake-5x7.pdf">Your card, 5x7 print-ready</a> (or <a href="keepsake/eric-keepsake.jpg">the picture</a>).</li>
-<li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
+<li><b>Bonus round.</b> <a href="play/dragon-house-blocks/">Dragon House in Blocks</a>, <a href="play/rosemaling/">Rosemaling</a>, <a href="play/un-gloom/">Un-Gloom</a>.</li><li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
 </ul>
 <p><b>Definition of Done:</b> every item green, and Eric knows how much it all means. Status: Loved.</p></div></noscript>
 
@@ -230,12 +246,13 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
   <aside id="dock" aria-label="Main Table">
     <header>
       <h3>Season '26 <img class="seal" src="img/seal.png" alt="The Dragon House emblem, designed by Eric" title="The Dragon House emblem, designed by Eric"></h3><div class="sub">Owner: Eric. Priority: Must have.</div>
-      <div class="tabs"><button class="ontab" type="button">Main Table</button><button type="button" data-open="table">Dragon Table</button><button type="button" id="hidedock">Hide board</button></div>
+      <div class="tabs"><button class="ontab" type="button">Main Table</button><button type="button" data-open="table">Dragon Table</button><button type="button" data-bonus>Bonus round</button><button type="button" id="hidedock">Hide board</button></div>
     </header>
     <div id="rows"></div>
     <div class="dod"><b>Definition of Done:</b> every item green, and Eric knows how much it all means.<br><button class="btn" id="fin" type="button">Roll the season finale</button><div style="margin-top:8px;font-size:13px;color:#5b6870">You don't have to finish everything to be celebrated. <button type="button" id="peek" style="text-decoration:underline;font-weight:700">See tonight's town</button></div></div>
   </aside>
-  <button id="dockbtn" type="button">Main Table</button>
+  <div id="bonus" role="dialog" aria-label="Bonus round"><button class="bclose" type="button" aria-label="Close">×</button><h2>Bonus round</h2><p class="bsub">New games for Eric, because he is doing the most. Pick one, keys 1 to 5 work too.</p><div class="bgrid"></div></div>
+<button id="dockbtn" type="button">Main Table</button>
   <div id="hint">Move into the town and the board slides away. Touch the left edge to bring it back.<br>Made by Darby, Gordon's AI assistant. Play design with dot. Art by Higgsfield, sound by ElevenLabs.</div>
   <img id="ship" src="img/ship.png" alt="A little rugged spaceship flying over town" tabindex="0">
 </section>
@@ -539,6 +556,17 @@ function eclipseClaim(){ const h=$('#hexclaim'); h.classList.add('on'); toast('S
 function shinyThenLoved(){ const l=document.querySelector('#end .loved'); if(!l) return; const t=l.textContent; l.textContent='Status: Shiny'; setTimeout(()=>{ l.textContent=t; },1400); }
 (function(){ const g=$('#galleon'); if(!g) return; const go=()=>{ location.href='skyship/'; }; g.addEventListener('click',go); g.addEventListener('keydown',e=>{ if(e.key==='Enter') go(); });
   const sail=()=>{ g.classList.remove('sail'); void g.offsetWidth; g.classList.add('sail'); }; setTimeout(sail,18000); setInterval(sail,60000); })();
+
+// BONUS ROUND (10/19)
+(function(){const B=[
+ {s:'dragon-house-blocks',t:'Dragon House in Blocks',d:'Build the Iverson-Johnson House block by block, light it up at night, and welcome home 3,425 villagers.',k:'3D build'},
+ {s:'rosemaling',t:'Rosemaling',d:'Paint Stoughton-style folk art on your own dragon-prow, every stroke a fiddle note. Frame it for the wall.',k:'Paint'},
+ {s:'un-gloom',t:'Un-Gloom',d:'For Sky Ship Studios. Stack the cards to make the Francksens happier, not gloomier.',k:'Cards'}
+/*BONUS-MORE*/];const ov=document.getElementById('bonus');if(!ov)return;const g=ov.querySelector('.bgrid');
+g.innerHTML=B.map((x,i)=>`<a class="bc" href="play/${x.s}/"><img src="play/thumbs/${x.s}.jpg" alt="" loading="lazy"><div><i>${x.k}</i><b>${x.t}</b><p><kbd>${i+1}</kbd>${x.d}</p></div></a>`).join('');
+const open=()=>{ov.classList.add('on');const a=g.querySelector('a');a&&a.focus();},close=()=>ov.classList.remove('on');
+document.querySelectorAll('[data-bonus]').forEach(b=>b.addEventListener('click',open));ov.querySelector('.bclose').addEventListener('click',close);
+addEventListener('keydown',e=>{if(!ov.classList.contains('on'))return;if(e.key==='Escape')close();const n=+e.key;if(n>=1&&n<=B.length)location.href='play/'+B[n-1].s+'/';});})();
 </script>
 </body>
 </html>
