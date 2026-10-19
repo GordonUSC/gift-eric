@@ -232,7 +232,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;z-index:9;pointer-eve
 <li><b>You.</b> Take a bow. Status: Done.</li>
 
 <li><b>Keepsake.</b> <a href="keepsake/eric-keepsake-5x7.pdf">Your card, 5x7 print-ready</a> (or <a href="keepsake/eric-keepsake.jpg">the picture</a>).</li>
-<li><b>Bonus round.</b> <a href="play/dragon-house-blocks/">Dragon House in Blocks</a>, <a href="play/rosemaling/">Rosemaling</a>, <a href="play/un-gloom/">Un-Gloom</a>.</li><li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
+<li><b>Bonus round.</b> <a href="play/dragon-house-blocks/">Dragon House in Blocks</a>, <a href="play/rosemaling/">Rosemaling</a>, <a href="play/un-gloom/">Un-Gloom</a>, <a href="play/doing-the-most/">Doing the Most</a>, <a href="play/mission-control/">Mission Control</a>.</li><li><b>Sky Ship.</b> <a href="skyship/">Follow the ship</a>, for the studio that started it.</li>
 </ul>
 <p><b>Definition of Done:</b> every item green, and Eric knows how much it all means. Status: Loved.</p></div></noscript>
 
@@ -595,6 +595,9 @@ function shinyThenLoved(){ const l=document.querySelector('#end .loved'); if(!l)
  {s:'dragon-house-blocks',t:'Dragon House in Blocks',d:'Build the Iverson-Johnson House block by block, light it up at night, and welcome home 3,425 villagers.',k:'3D build'},
  {s:'rosemaling',t:'Rosemaling',d:'Paint Stoughton-style folk art on your own dragon-prow, every stroke a fiddle note. Frame it for the wall.',k:'Paint'},
  {s:'un-gloom',t:'Un-Gloom',d:'For Sky Ship Studios. Stack the cards to make the Francksens happier, not gloomier.',k:'Cards'}
+,
+ {s:'doing-the-most',t:'Doing the Most',d:'Keep every plate spinning, Dad, the House, Cider Camp, GGP, the day job, the Dragon Table, until your people step in.',k:'Play'},
+ {s:'mission-control',t:'Mission Control',d:'Executive Producer of an AI crew. Assign it, unblock it, mark it Done, and launch the show.',k:'Produce'}
 /*BONUS-MORE*/];const ov=document.getElementById('bonus');if(!ov)return;const g=ov.querySelector('.bgrid');
 g.innerHTML=B.map((x,i)=>`<a class="bc" href="play/${x.s}/"><img src="play/thumbs/${x.s}.jpg" alt="" loading="lazy"><div><i>${x.k}</i><b>${x.t}</b><p><kbd>${i+1}</kbd>${x.d}</p></div></a>`).join('');
 const open=()=>{ov.classList.add('on');const a=g.querySelector('a');a&&a.focus();},close=()=>ov.classList.remove('on');
