@@ -119,5 +119,49 @@
  "media/j-pharmacy.jpg": {
   "tool": "higgsfield",
   "prompt": "gpt_image_2_5 1:1: small-town Main Street pharmacy with mortar-and-pestle sign; bright cheerful watercolor storybook vignette, pen-and-ink crosshatch, plain cream background, no text, no logos (job d98845f9-c1b9-4c69-b0de-e2cc33b3ee35)"
+ },
+ "media/house-wide-1920.jpg": {
+  "tool": "higgsfield",
+  "prompt": "derived: media/house-wide@2x.jpg (the Higgsfield bytedance 4k upscale already logged here) resized with Lanczos to 1920 wide, so a 1920x1080 PC screen at DPR 1 gets native pixels instead of the 1344 px 1x stretched 1.44x",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/house-tall@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 35c10eee-14f1-4249-ab6c-6013b80f37fe (the existing 1x file's source) to 2160x3856, Lanczos to 1500 wide, JPEG q82; served as the 2x of an image-set/srcset so phones at DPR 2 to 3 get native pixels",
+  "job": "7d7b6a61-0970-406a-8639-e6b7479ebd0e",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/eric@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/eric.jpg's job (upscale job 27502b07-9a4e-4fb5-aa3d-06a3e2c87bc0); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/crystal@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/crystal.jpg's job (upscale job c26cbd85-77a1-4b69-93e4-564d9b90c89b); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/james@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/james.jpg's job (upscale job 3edf4b60-491a-4a48-adfa-46478567e9ca); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/henry@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/henry.jpg's job (upscale job a7e1ff7a-f0a0-49b7-90ad-63147aed5801); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
+ },
+ "media/oscar@2x.jpg": {
+  "tool": "higgsfield",
+  "prompt": "bytedance upscale of media/oscar.jpg's job (upscale job bd218969-2c00-403f-ba60-1ca4a6dcbc16); faceless storybook portrait, no likeness",
+  "note": "was documented only inside the 1x entry; separate key added in wave 3",
+  "wave": "v5 wave 3"
  }
 }

@@ -1,7 +1,7 @@
 // Dragon House in Blocks: the voxel model.
-// A stylized Queen Anne in the spirit of the Iverson-Johnson House (1898, A. E. Ovren):
-// slate clapboard, cream trim, burgundy sash, charcoal roofs, corner turret,
-// round wraparound porch with a pediment over the steps, fish-scale gables.
+// A stylized Queen Anne in the spirit of the Iverson-Johnson House (1898, A. E. Ovren).
+// Sourced from Gordon's photos: blue clapboard, cream trim, wraparound porch.
+// Everything else in the massing is a voxel stylization, not a claim about the house.
 // Pure data, no three.js, so it can be checked in node.
 
 export const TX = 0, TZ = 12, TR = 3.7, B = 3;
@@ -20,10 +20,10 @@ export const P = {
 export const STAGES = [
   'Stone foundation', 'Porch deck and steps', 'First floor, sill course',
   'First floor, window course', 'First floor, belt course', 'Porch columns and railing',
-  'Porch roof and pediment', 'Second floor, sill course', 'Second floor, window course',
-  'Second floor, frieze', 'Turret fish-scale shingles', 'Fish-scale gables',
+  'Porch roof', 'Second floor, sill course', 'Second floor, window course',
+  'Second floor, frieze', 'Corner, upper courses', 'Gable ends',
   'Main roof, eaves', 'Main roof, middle', 'Main roof, ridge', 'Front gable roof',
-  'Brick chimney', 'Turret roof, lower', 'Turret roof, upper', 'Finial and flag',
+  'Roofline details', 'Corner roof, lower', 'Corner roof, upper', 'Peak and flag',
 ];
 
 function mulberry32(a) {

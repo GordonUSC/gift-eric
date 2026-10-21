@@ -6,15 +6,16 @@
 <meta name="theme-color" content="#0f3f3a">
 <title>Doing the Most</title>
 <meta name="description" content="A plate-spinning show for Eric: six plates, all of them his, and the people who step in to help.">
-<!-- STYLE: "Rosemaling Folk Circus" (Lived): a hand-painted bandstand in Norwegian rosemaling, the folk art that still thrives in Stoughton (visitstoughton.com, Norwegian Heritage Tour), with six enamel plates cut from Eric's own Dragon House emblem palette, teal, white and gold. | WHY: plate spinning is the honest picture of his year, and painting it in his town's folk art and his own emblem makes it his stage, not a stock circus. | ALT: "Ringmaster Letterpress", a flat two-color circus poster with wood type; louder, but it would look like any circus. -->
+<!-- STYLE: "Rosemaling Folk Circus" (Lived): a hand-painted rosemaling bandstand, with six enamel plates cut from Eric's own Dragon House emblem palette, teal, white and gold. | WHY: plate spinning is the honest picture of his year, and painting it in folk rosemaling and his own emblem makes it his stage, not a stock circus. | ALT: "Ringmaster Letterpress", a flat two-color circus poster with wood type; louder, but it would look like any circus. -->
 <!-- FORBIDS: card grids, pill buttons, mono kicker labels, cream template cards. Painted wood, enamel, gold leaf, serif display. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rozha+One&family=Alegreya+Sans:wght@400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
+html{font-synthesis-weight:none}
 :root{
   --teal:#0f3f3a; --teal2:#17594f; --deep:#08201e; --gold:#d9a93f; --gold2:#f3d27a; --cream:#fbf5e6; --rose:#b3362c; --ink:#14201e;
-  --display:"Rozha One",Georgia,serif; --sans:"Alegreya Sans",system-ui,sans-serif;
+  --display:"Young Serif",Georgia,serif; --sans:"Instrument Sans",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%;background:var(--deep);color:var(--cream);font-family:var(--sans);font-size:18px;-webkit-tap-highlight-color:transparent}
@@ -47,6 +48,15 @@ html.js .app{display:block}
 .top .tool kbd{margin-left:8px}
 @media (hover:none){.top .tool kbd,.label kbd,.hint kbd,.go kbd{display:none}.hint .hp{display:none}}
 @media (hover:hover){.hint .ht{display:none}}
+.rig.parked .pw{opacity:0;transition:opacity .3s}.rig.parked .pole{opacity:.45}.rig.parked{pointer-events:none}
+.tally{position:absolute;left:16px;bottom:calc(env(safe-area-inset-bottom,0px) + 46px);z-index:20;font-size:16px;font-weight:700;color:var(--cream);text-shadow:0 2px 8px #000;pointer-events:none}
+.tally b{color:var(--gold2)}
+.receipt{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px auto 0;max-width:640px}
+.receipt div{background:rgba(8,32,30,.7);border:1px solid var(--gold);border-radius:8px;padding:10px 6px}
+.receipt b{display:block;font-family:var(--display);font-weight:400;font-size:clamp(28px,2.6vw,44px);color:var(--gold2);line-height:1}
+.receipt span{display:block;font-size:15px;margin-top:4px}
+.receipt.five{grid-template-columns:repeat(5,minmax(0,1fr));max-width:760px}
+@media (max-width:560px){.receipt,.receipt.five{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tempo i{transition:none}@media (max-width:480px){.tempo i{width:84px}}
 .marquee{position:absolute;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 64px);z-index:20;text-align:center;pointer-events:none;width:min(92vw,980px)}
 .marquee .t{font-family:var(--display);font-size:clamp(26px,3.4vw,58px);line-height:1;color:var(--gold2);text-shadow:0 2px 0 #5a3a0a,0 6px 24px rgba(0,0,0,.6)}
@@ -86,6 +96,15 @@ html.js .app{display:block}
 .label .d{font-size:clamp(16px,.95vw,21px);font-weight:700;color:var(--gold2);text-shadow:0 2px 8px #000;margin-top:3px}
 .label kbd{margin-top:6px}
 .fall .pw{transition:none}
+.rig.guarded .pw{filter:drop-shadow(0 0 18px rgba(243,210,122,.95)) drop-shadow(0 0 30px rgba(23,180,160,.8))}
+.rig.guarded .ring{opacity:1;animation:guard 1.3s ease-out;box-shadow:0 0 0 5px rgba(243,210,122,.95),0 0 44px 16px rgba(23,180,160,.6)}
+@keyframes guard{from{transform:translate(-50%,-50%) scaleY(.55) scale(1.6);opacity:0}30%{opacity:1}to{transform:translate(-50%,-50%) scaleY(.55) scale(1)}}
+.rig.row2 .pole{background:linear-gradient(90deg,#0d5a50,#7fd6c4 45%,#0f3f3a)}
+.guardbadge{display:inline-flex;align-items:center;gap:10px;margin:18px auto 0;padding:10px 16px;border:2px solid var(--gold);border-radius:8px;background:rgba(15,63,58,.85);font-size:17px;font-weight:600;line-height:1.35;text-align:left;max-width:34em}
+.guardbadge b{font-family:var(--display);font-weight:400;color:var(--gold2)}
+.guardbadge svg{flex:none}
+.hardrow{margin-top:14px}
+.hardnote{font-size:16px;color:var(--gold2);margin-top:4px;min-height:1.2em}
 .spark{position:absolute;width:8px;height:8px;border-radius:50%;pointer-events:none;z-index:15}
 
 /* overlays */
@@ -107,11 +126,13 @@ html.js .app{display:block}
 .card .credit{margin-top:22px;font-size:16px;opacity:.85;line-height:1.45}
 .final{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.9);z-index:35;text-align:center;opacity:0;transition:opacity .9s,transform 1.2s cubic-bezier(.2,1,.3,1);pointer-events:none;width:min(94vw,1300px)}
 .final.on{opacity:1;transform:translate(-50%,-50%) scale(1)}
+.final.gone{display:none}
 .final .t{font-family:var(--display);font-size:clamp(34px,5.4vw,112px);line-height:1;color:var(--cream);text-shadow:0 3px 0 #5a3a0a,0 0 40px rgba(217,169,63,.7),0 10px 50px rgba(0,0,0,.8)}
 canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:36}
 @media (prefers-reduced-motion:reduce){.rig.enter{animation:none}.rig.low .ring{animation:none;opacity:1;box-shadow:0 0 0 4px rgba(243,210,122,.9)}.hand{transition:opacity .2s}.final{transition:opacity .4s}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
+<script src="../../js/ledger.js"></script>
 </head>
 <body>
 
@@ -125,21 +146,21 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z
     <li><strong>The House</strong>: the Iverson-Johnson House, 1898</li>
     <li><strong>Cider Camp</strong></li>
     <li><strong>GGP Executive Producer</strong>: Weekly Connect and IGNITE</li>
-    <li><strong>The Day Job</strong>: the AI role</li>
-    <li><strong>The Dragon Table</strong>: Dragon House Sessions</li>
+    <li><strong>The Day Job</strong>: product owner by day</li>
+    <li><strong>The Dragon Table</strong>: D&amp;D night at the Dragon House</li>
   </ul>
   <h2>Then it gets frantic</h2>
   <p>When there are too many plates for two hands, his people step in. Crystal. Gordon. James, Henry, and Oscar, each in their own colors. A plate that falls gets caught. Nobody loses here.</p>
   <p>At the end every plate spins on its own, and the line reads: <strong>You don't have to spin them all alone.</strong></p>
   <p>Turn on JavaScript to play it, with sound.</p>
-  <a class="back" href="../../index.html">Back to the board</a>
+  <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
 </article>
 
 <div class="app" id="app" aria-live="polite">
   <div class="bg"></div>
   <div class="vignette"></div>
   <div class="top">
-    <a class="back" href="../../index.html">Back to the board</a>
+    <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
     <span class="sp"></span>
     <button class="tool" id="mute" aria-pressed="false">Sound on<kbd>M</kbd></button>
     <button class="tool" id="fs">Full screen<kbd>F</kbd></button>
@@ -147,6 +168,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z
   <div class="marquee"><div class="t" id="mt">Doing the Most</div><div class="s" id="ms"></div></div>
   <div id="rigs"></div>
   <div class="hint" id="hint"><span class="hp">Click a plate to spin it. <kbd>1</kbd> to <kbd>6</kbd> spins a plate, <kbd>Space</kbd> spins the slowest.</span><span class="ht">Tap a plate to spin it.</span></div>
+  <div class="tally" id="tally" aria-hidden="true"></div>
   <div class="tempo" aria-hidden="true">Tempo <i><b id="tb"></b></i></div>
   <div class="final" id="final"><div class="t">You don't have to spin them all alone.</div></div>
   <canvas class="fx" id="fx"></canvas>
@@ -155,7 +177,9 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z
     <div class="card">
       <div class="kick">For Eric, from Gordon and Darby</div>
       <h1>Doing the Most</h1>
-      <p>Six plates, all of them yours. Keep them spinning. It is going to get busy.</p>
+      <p>Six plates, all of them yours. Keep them spinning. It is going to get busy. Catch a wobbling plate before it drops. If one falls, one of your people holds it for you.</p>
+      <div id="guardbadge" hidden></div>
+      <div class="hardrow" id="hardrow"></div><div class="hardnote" id="hardnote"></div>
       <div class="row"><button class="go" id="play">Start the show <kbd>Enter</kbd></button></div>
       <p class="credit">Best with sound. Tap or click a plate to spin it.</p>
     </div>
@@ -164,12 +188,13 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z
   <div class="panel hide" id="end">
     <div class="card">
       <h1>You don't have to spin them all alone.</h1>
-      <p>Crystal. Gordon. James, Henry, and Oscar. Your people have you, and every plate is still in the air.</p>
+      <p id="endline">Crystal. Gordon. James, Henry, and Oscar. Your people have you, and every plate is still in the air.</p>
+      <div class="receipt" id="receipt"></div>
       <div class="row">
         <button class="go" id="again">Spin it again <kbd>R</kbd></button>
-        <a class="go alt" href="../../index.html">Back to the board <kbd>B</kbd></a>
+        <a class="go alt" href="../../index.html" data-board="../../">Back to the board <kbd>B</kbd></a>
       </div>
-      <p class="credit">Painted in rosemaling, the Norwegian folk art that still thrives in Stoughton, and in the teal, white and gold of the Dragon House emblem you designed.</p>
+      <p class="credit">Painted in rosemaling, in the teal, white and gold of the Dragon House emblem you designed.</p>
     </div>
   </div>
 </div>
@@ -184,8 +209,8 @@ var PLATES = [
   {k:'house', n:'The House',      d:'Iverson-Johnson, 1898'},
   {k:'cider', n:'Cider Camp',     d:'the camp you run'},
   {k:'ggp',   n:'GGP Executive Producer', d:'Weekly Connect and IGNITE'},
-  {k:'ai',    n:'The Day Job',    d:'the AI role'},
-  {k:'table', n:'The Dragon Table', d:'Dragon House Sessions'}
+  {k:'ai',    n:'The Day Job',    d:'product owner by day'},
+  {k:'table', n:'The Dragon Table', d:'D&D night'}
 ];
 var HELPERS = [
   {k:'crystal', n:'Crystal', c:['#ffffff','#17594f']},
@@ -194,7 +219,14 @@ var HELPERS = [
   {k:'henry',   n:'Henry',   c:['#c0392b','#2e7d32']},
   {k:'oscar',   n:'Oscar',   c:['#ef7d1a','#2a5db0']}
 ];
-var ENTER_AT = [0,5,10,15,20,25];
+var ROW2 = [
+  {k:'table', n:'Gordtopia', d:'the server you keep', f:'hue-rotate(140deg) saturate(1.2)'},
+  {k:'ggp',   n:'Weekly Connect', d:'GGP, every week', f:'hue-rotate(60deg)'},
+  {k:'ggp',   n:'IGNITE', d:'GGP, lit up', f:'hue-rotate(-70deg) saturate(1.3)'}
+];
+var ENTER_AT = [0,5,10,15,20,25,29,33,37];
+var HARD=false, GUARD=false, protectedN=0, GUARD_MAX=2; /* the guardian saves at most two drops a run, so catching still matters */
+function nActive(){ return HARD?9:6; }
 var JOIN_AT = [33,40,46,51,56];
 var MAGIC_AT = 64;
 
@@ -205,7 +237,7 @@ function initAudio(){
   if(AC) return;
   try{
     AC = new (window.AudioContext||window.webkitAudioContext)();
-    master = AC.createGain(); master.connect(AC.destination);
+    master = AC.createGain(); master.gain.value = muted?0:1; master.connect(AC.destination);
     SND.forEach(function(n){
       fetch('snd/'+n+'.mp3').then(function(r){return r.arrayBuffer()}).then(function(a){
         return new Promise(function(res,rej){AC.decodeAudioData(a,res,rej)});
@@ -224,15 +256,19 @@ function startScore(){
   score.loopStart=0.05; score.loopEnd=bufs.score.duration-0.05;
   scoreGain=AC.createGain(); scoreGain.gain.value=1; score.connect(scoreGain); scoreGain.connect(master); score.start(0,0.05);
 }
-function setMute(m){muted=m; if(master) master.gain.value=m?0:1; var b=$('#mute'); b.firstChild.nodeValue=m?'Sound off':'Sound on'; b.setAttribute('aria-pressed',m?'true':'false');}
+function applyMute(m){muted=m; if(master) master.gain.value=m?0:1; var b=$('#mute'); b.firstChild.nodeValue=m?'Sound off':'Sound on'; b.setAttribute('aria-pressed',m?'true':'false');}
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function setMute(m){ if(window.ledger) ledger.setSound(!m); else applyMute(m); }
+if(window.ledger) ledger.bindSound(function(on){ applyMute(!on); });
 
 /* ---------- build the rigs ---------- */
 var rigsEl=$('#rigs'), rigs=[];
-PLATES.forEach(function(p,i){
-  var b=document.createElement('button'); b.className='rig off'; b.type='button';
+PLATES.concat(ROW2).forEach(function(p,i){
+  var b=document.createElement('button'); b.className='rig off'+(i>=6?' row2':''); b.type='button';
   b.setAttribute('aria-label','Spin '+p.n+' ('+p.d+'), key '+(i+1));
   b.innerHTML='<div class="base"></div><div class="pole"></div><div class="hand"><img alt="" src=""></div>'+
     '<div class="ring"></div><div class="pw"><div class="plate"><img class="g2" alt="" src="img/plate-'+p.k+'.webp"><img class="g1" alt="" src="img/plate-'+p.k+'.webp"><img class="b" alt="" src="img/plate-'+p.k+'.webp"><div class="shine"></div></div></div><div class="tag"></div>';
+  if(p.f) b.querySelector('.plate').style.filter=p.f;
   var lab=document.createElement('div'); lab.className='label off';
   lab.innerHTML='<div class="n">'+p.n+'</div><div class="d">'+p.d+'</div><kbd>'+(i+1)+'</kbd>';
   rigsEl.appendChild(b); rigsEl.appendChild(lab);
@@ -249,8 +285,15 @@ function layout(){
   W=innerWidth; H=innerHeight; portrait = W/H < 1;
   rigs.forEach(function(r,i){
     var x,floor,ph,D,lw;
-    if(!portrait){
+    r.el.style.display = (i<nActive())?'':'none'; r.lab.style.display = (i<nActive())?'':'none';
+    if(i>=6){ var j=i-6;
+      if(!portrait){ x=W*(0.263+j*0.237); floor=H*0.50; ph=H*0.17; D=Math.min(W*0.088,H*0.17); lw=W*0.13; }
+      else { x=W*(0.18+j*0.32); floor=H*0.40; ph=H*0.10; D=Math.min(W*0.24,H*0.105); lw=W*0.31; }
+    } else if(!portrait){
       x = W*(0.105 + i*0.158); floor=H*0.79; ph=H*0.37; D=Math.min(W*0.128,H*0.27); lw=W*0.15;
+    } else if(HARD){
+      var c2=i%3,r2=(i/3)|0;
+      x = W*(0.18+c2*0.32); floor = H*(r2?0.86:0.63); ph=H*0.10; D=Math.min(W*0.24,H*0.105); lw=W*0.31;
     } else {
       var col=i%3,row=(i/3)|0;
       x = W*(0.18+col*0.32); floor = H*(row?0.84:0.52); ph=H*0.15; D=Math.min(W*0.29,H*0.14); lw=W*0.31;
@@ -269,6 +312,7 @@ function layout(){
 }
 
 /* ---------- game state ---------- */
+var spins=0, saves=0, streak=0, best=0, lost=[];
 var looping=false, running=false, t=0, last=0, joined=[], queue=[], helperNext={}, phase='idle', magic=false, ended=false, msgUntil=0;
 var mt=$('#mt'), ms=$('#ms'), tb=$('#tb');
 function say(s,hold){ms.textContent=s; msgUntil=t+(hold||3);}
@@ -276,14 +320,16 @@ function decay(){ if(magic) return 0; var k=(t-8)/40; k=k<0?0:k>1?1:k; return 0.
 function tempo(){ var k=t/58; return k<0?0:k>1?1:k; }
 
 function spin(r,byEric){
-  if(!running||!r.active||r.falling) return;
+  if(!running||!r.active||r.falling||r.parked) return;
+  if(byEric){ spins++; if(r.om<0.5&&!magic){ saves++; streak++; if(streak>best) best=streak; } tallyHud(); }
   if(!byEric && r.om>0.8) return;
   var before=r.om; r.om=Math.min(1,r.om+(byEric?0.5:1)); r.lowWarned=false;
   play('spin',0.9+before*0.25+Math.random()*0.08, byEric?1:0.8);
   sparks(r, byEric?10:6);
   if(byEric && phase==='warm' && t>2) {}
 }
-function slowest(){ var m=null; rigs.forEach(function(r){ if(r.active&&!r.falling&&t>=r.assistUntil&&(!m||r.om<m.om)) m=r; }); return m; }
+function tallyHud(){ var e=$('#tally'); if(e) e.innerHTML='Caught <b>'+saves+'</b>. Streak <b>'+streak+'</b>. Spinning <b>'+(nActive()-lost.length)+'</b> of '+nActive()+'.'+(GUARD?' Guardian saves <b>'+protectedN+'</b> of '+GUARD_MAX+'.':''); }
+function slowest(){ var m=null; rigs.forEach(function(r){ if(r.active&&!r.falling&&!r.parked&&t>=r.assistUntil&&(!m||r.om<m.om)) m=r; }); return m; }
 
 function showHand(r,h,dur){
   if(h.at && h.at!==r && !magic){ h.at.hand.classList.remove('on'); h.at.tag.classList.remove('on'); h.at.assistUntil=Math.min(h.at.assistUntil,t); }
@@ -309,22 +355,37 @@ function assist(h){
   var r=slowest(); if(!r||r.om>0.72) return false;
   showHand(r,h,1.6); spin(r,false); return true;
 }
+function protect(r){
+  protectedN++; r.om=0.9; r.lowWarned=false; r.el.classList.remove('low');
+  r.el.classList.remove('guarded'); void r.el.offsetWidth; r.el.classList.add('guarded');
+  clearTimeout(r._gt); r._gt=setTimeout(function(){ r.el.classList.remove('guarded'); },1400);
+  clearTimeout(r._ht); r.tag.innerHTML='<span class="sw" style="background:linear-gradient(90deg,#d9a93f 50%,#17594f 50%)"></span>Protected.'; r.tag.classList.add('on');
+  r._ht=setTimeout(function(){ if(!magic) r.tag.classList.remove('on'); },1500);
+  play('catch',1.5,0.7); play('spin',1.3,0.5);
+  var keep=COLS; COLS=['#d9a93f','#f3d27a','#17594f','#7fd6c4']; sparks(r,18); COLS=keep;
+  var left=GUARD_MAX-protectedN; say(r.p.n+' glowed and landed. Protected.'+(left?' Your guardian has one more save.':' The guardian is spent. The rest are yours.'),2.6); tallyHud();
+}
 function drop(r){
+  if(GUARD&&protectedN<GUARD_MAX){ protect(r); return; }
   r.falling=true; r.fall=0; r.el.classList.add('fall');
   play('wobble',1.15,0.8);
-  var h = joined.length ? joined[(Math.random()*joined.length)|0] : queue[0];
+  var h = HELPERS[lost.length % HELPERS.length]; // a different one of his people holds each fallen plate
   setTimeout(function(){
     if(joined.indexOf(h)<0) join(h);
-    r.falling=false; r.fall=0; r.el.classList.remove('fall'); r.om=1; r.lowWarned=false;
-    showHand(r,h,1.8); play('catch'); sparks(r,14);
-    say('Caught. '+h.n+(h.k==='gordon'?' has it.':' has it.'),2.4);
+    r.falling=false; r.fall=0; r.el.classList.remove('fall','low'); r.om=0; r.lowWarned=false;
+    r.parked=h; r.el.classList.add('parked'); lost.push({plate:r.p.n,by:h.n}); streak=0; tallyHud();
+    clearTimeout(r._ht); r.tag.innerHTML='<span class="sw" style="background:linear-gradient(90deg,'+h.c[0]+' 50%,'+h.c[1]+' 50%)"></span>'+h.n+' holds it'; r.tag.classList.add('on');
+    play('catch'); sparks(r,14);
+    say(h.n+' caught '+r.p.n+' and is holding it.',2.6);
   }, 420);
 }
 
 function begin(){
   initAudio(); if(AC&&AC.state==='suspended') AC.resume();
   $('#start').classList.add('hide'); $('#end').classList.add('hide');
-  rigs.forEach(function(r){r.active=false;r.om=0;r.el.classList.add('off');r.lab.classList.add('off');r.el.classList.remove('solo','low');r.hand.classList.remove('on');r.tag.classList.remove('on');r.assistUntil=0;});
+  HARD=!!(window.ledger&&ledger.hard('doing-the-most')); GUARD=!!(window.ledger&&ledger.guardian()); protectedN=0; layout();
+  spins=0; saves=0; streak=0; best=0; lost=[]; tallyHud();
+  rigs.forEach(function(r){r.parked=null;r.el.classList.remove('parked');r.active=false;r.om=0;r.el.classList.add('off');r.lab.classList.add('off');r.el.classList.remove('solo','low');r.hand.classList.remove('on');r.tag.classList.remove('on');r.assistUntil=0;});
   $('#final').classList.remove('on');
   HELPERS.forEach(function(h){h.at=null}); joined=[]; queue=HELPERS.slice(); helperNext={}; magic=false; ended=false; t=0; phase='warm'; parts=[];
   mt.textContent='Doing the Most'; say('Start with Dad. Tap to keep him spinning.',4);
@@ -339,12 +400,13 @@ function enter(r){
   r.active=true; r.om=0.95; r.el.classList.remove('off'); r.lab.classList.remove('off');
   if(!RM){r.el.classList.remove('enter'); void r.el.offsetWidth; r.el.classList.add('enter');}
   play('spin',1.1,0.7);
-  var lines=['','The House joins in.','Cider Camp, too.','GGP needs you.','And the day job.','And the Dragon Table. Six plates.'];
+  var lines=['','The House joins in.','Cider Camp, too.','GGP needs you.','And the day job.','And the Dragon Table. Six plates.','Hard mode: Gordtopia joins the back row.','Weekly Connect, too.','And IGNITE. Nine plates.'];
   if(r.i) say(lines[r.i],2.6);
 }
 
 function startMagic(){
-  magic=true; phase='magic';
+  var kept=nActive()-lost.length; magic=true; phase='magic'; finishLedger(kept);
+  rigs.forEach(function(r){ if(r.parked){ r.parked=null; r.el.classList.remove('parked'); } });
   HELPERS.forEach(function(h){ if(joined.indexOf(h)<0){joined.push(h);} });
   play('magic');
   var hs=HELPERS.slice();
@@ -355,20 +417,45 @@ function startMagic(){
   mt.textContent=''; ms.textContent='';
   setTimeout(function(){ // hands let go, plates spin on their own
     rigs.forEach(function(r){r.hand.classList.remove('on'); r.tag.classList.remove('on'); r.el.classList.add('solo');});
-    $('#final').classList.add('on');
+    $('#final').classList.remove('gone'); $('#final').classList.add('on');
   },2600);
   setTimeout(function(){
     if(scoreGain&&AC){ scoreGain.gain.setValueAtTime(scoreGain.gain.value,AC.currentTime); scoreGain.gain.linearRampToValueAtTime(0,AC.currentTime+1.2); }
     play('finale'); play('confetti'); setTimeout(function(){play('cheer')},350); confetti();
   },3200);
-  setTimeout(function(){ ended=true; $('#final').classList.remove('on'); $('#end').classList.remove('hide'); $('#again').focus({preventScroll:true}); },10500);
+  setTimeout(function(){ ended=true; $('#final').classList.remove('on'); $('#final').classList.add('gone'); $('#end').classList.remove('hide'); $('#again').focus({preventScroll:true}); },10500);
 }
 
+function finishLedger(kept){
+  var ln=$('#endline'), rc=$('#receipt');
+  var held=lost.map(function(x){return x.by+' held '+x.plate+'.';}).join(' ');
+  var N=nActive(), all=kept===N, word=N===9?'nine':'six', idle=spins===0;
+  var gl = GUARD ? (protectedN ? ' Your guardian kept '+protectedN+' safe.' : ' Your guardian stood watch.') : '';
+  /* the receipt credits real play: a run with no spins says so, kindly, and never reads as a full result */
+  var lead = idle ? 'Your people kept '+kept+' of '+N+' in the air while you watched. Jump in next run and they spin even higher.'+(held?' '+held:'')
+    : all ? 'All '+word+' stayed in the air, and your people still showed up. Crystal. Gordon. James, Henry, and Oscar.'
+    : 'You kept '+kept+' of '+N+' spinning. '+held+' Your people have you.';
+  if(ln) ln.textContent = lead+gl;
+  var cells=[[kept+' of '+N,'kept spinning'],[saves,'your catches'],[best,'best streak'],[spins,'spins']]; if(GUARD) cells.splice(1,0,[protectedN,'guardian saves']);
+  if(rc) rc.classList.toggle('five',GUARD);
+  if(rc) rc.innerHTML=cells.map(function(a){return '<div><b>'+a[0]+'</b><span>'+a[1]+'</span></div>';}).join('');
+  var upd = GUARD&&protectedN ? 'Guardian kept '+protectedN+' safe. Your catches: '+saves+'.'
+    : idle ? 'Family kept '+kept+' of '+N+' spinning.'
+    : all ? (saves ? saves+' catches. Every plate still spinning.' : spins+' spins. Every plate still spinning.')
+    : kept+' of '+N+' spinning. Family held '+(N-kept)+'.';
+  if(HARD&&all&&!idle&&!(GUARD&&protectedN)) upd=(saves?saves+' catches.':spins+' spins.')+' All nine spinning.';
+  try{ if(window.ledger){ ledger.done('doing-the-most',upd,{kept:kept,total:N,caught:saves,best:best,spins:spins,protected:protectedN,hard:HARD});
+    ledger.add('plates',saves); if(protectedN) ledger.add('protected',protectedN);
+    if(all&&N===6) ledger.first('dtm-six','All six plates kept spinning');
+    if(all&&N===9) ledger.first('dtm-nine','All nine plates kept spinning');
+    if(protectedN) ledger.first('dtm-protected','First protected plate'); } }catch(e){}
+  window.__dtmReceipt={kept:kept,total:N,caught:saves,best:best,spins:spins,protected:protectedN,hard:HARD,update:upd};
+}
 function loop(now){
   if(!running) return;
   var dt=Math.min(0.05,(now-last)/1000); last=now; t+=dt;
   // enter plates
-  for(var i=0;i<rigs.length;i++){ if(!rigs[i].active && t>=ENTER_AT[i]) enter(rigs[i]); }
+  for(var i=0;i<nActive();i++){ if(!rigs[i].active && t>=ENTER_AT[i]) enter(rigs[i]); }
   // tempo
   var tk=tempo(); tb.style.width=(magic?100:tk*100)+'%';
   if(score&&!magic) score.playbackRate.value=1+0.2*tk;
@@ -384,6 +471,7 @@ function loop(now){
   var k=decay();
   rigs.forEach(function(r){
     if(!r.active) return;
+    if(r.parked) return;
     if(r.falling){ r.fall+=dt; }
     else if(t>=r.assistUntil || magic){ r.om=Math.max(0,r.om-k*dt); }
     if(!magic && !r.falling && r.om<=0) drop(r);
@@ -448,14 +536,24 @@ addEventListener('keydown',function(e){
   if(k==='m'||k==='M'){setMute(!muted);return;}
   if(k==='f'||k==='F'){toggleFs();return;}
   if(!running && !$('#start').classList.contains('hide') && (k==='Enter'||k===' ')){e.preventDefault();begin();return;}
-  if(ended){ if(k==='r'||k==='R'){begin();} if(k==='b'||k==='B'){location.href='../../index.html';} return; }
-  if(k>='1'&&k<='6'){ spin(rigs[+k-1],true); return; }
+  if(ended){ if(k==='r'||k==='R'){begin();} if(k==='b'||k==='B'){location.href=(window.ledger?ledger.boardHref('../../'):'../../index.html');} return; }
+  if(k>='1'&&k<=String(nActive())){ spin(rigs[+k-1],true); return; }
   if(k===' '){ e.preventDefault(); var r=slowest(); if(r) spin(r,true); }
 });
 addEventListener('resize',layout);
 document.addEventListener('visibilitychange',function(){ if(!AC) return; if(document.hidden) AC.suspend(); else AC.resume(); });
 layout();
-window.__dtm={get t(){return t}, get ended(){return ended}, get joined(){return joined.map(function(h){return h.n})}, rigs:rigs};
+/* start screen: guardian badge (cross-game rule) and the return-visit hard toggle */
+function setupStart(){
+  GUARD=!!(window.ledger&&ledger.guardian());
+  var gb=$('#guardbadge');
+  if(GUARD){ gb.hidden=false; gb.className='guardbadge'; gb.innerHTML='<svg width="34" height="40" viewBox="0 0 34 40" aria-hidden="true"><path d="M17 2 31 8v11c0 9-6 16-14 19C9 35 3 28 3 19V8z" fill="#17594f" stroke="#f3d27a" stroke-width="2.5"/><path d="M17 11v16M11 17h12" stroke="#f3d27a" stroke-width="3" stroke-linecap="round"/></svg><span><b>Guardian on watch.</b> You placed one in Dragon House in Blocks, so your first two falling plates glow and land. After that, every catch is yours.</span>'; }
+  var hr=$('#hardrow'), hn=$('#hardnote');
+  function note(on){ var hp=document.querySelector('#hint .hp'); if(hp) hp.innerHTML='Click a plate to spin it. <kbd>1</kbd> to <kbd>'+(on?9:6)+'</kbd> spins a plate, <kbd>Space</kbd> spins the slowest.'; hn.textContent=on?'A second spinner row joins: nine plates. Keys 7 to 9 for the back row.':''; HARD=on; layout(); }
+  if(window.ledger){ var b=ledger.hardToggle('doing-the-most',hr,note,'second spinner row'); if(b) note(ledger.hard('doing-the-most')); }
+}
+setupStart();
+window.__dtm={get t(){return t}, get ended(){return ended}, get joined(){return joined.map(function(h){return h.n})}, rigs:rigs, get protected(){return protectedN}, get hard(){return HARD}, get guardian(){return GUARD}, get nActive(){return nActive()}};
 })();
 </script>
 </body>

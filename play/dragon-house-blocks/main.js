@@ -307,7 +307,7 @@ scene.add(glowMesh);
 // Gordtopia sign board
 let signMesh = null;
 async function buildSign() {
-  try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]); await document.fonts.load('800 110px "Unbounded"'); await document.fonts.load('italic 600 60px "Figtree"'); } catch (e) { /* draw with fallbacks */ }
+  try { await Promise.race([document.fonts.ready, new Promise((r) => setTimeout(r, 2500))]); await document.fonts.load('400 110px "Young Serif"'); await document.fonts.load('600 60px "Instrument Sans"'); } catch (e) { /* draw with fallbacks */ }
   const cv = document.createElement('canvas'); cv.width = 1024; cv.height = 400;
   const g = cv.getContext('2d');
   const wood = g.createLinearGradient(0, 0, 0, 400); wood.addColorStop(0, '#7a5232'); wood.addColorStop(1, '#5e3d24');
@@ -316,8 +316,8 @@ async function buildSign() {
   for (let y = 0; y < 400; y += 50) g.fillRect(0, y, 1024, 3);
   g.globalAlpha = 1; g.strokeStyle = '#d9a441'; g.lineWidth = 10; g.strokeRect(18, 18, 988, 364);
   g.fillStyle = '#f3ead6'; g.textAlign = 'center'; g.textBaseline = 'middle';
-  g.font = '800 112px "Unbounded", "Arial Black", sans-serif'; g.fillText('GORDTOPIA', 512, 165, 900);
-  g.fillStyle = '#ffd98a'; g.font = 'italic 600 66px "Figtree", Georgia, serif'; g.fillText('All Roads Lead Home', 512, 290);
+  g.font = '400 112px "Young Serif", Georgia, serif'; g.fillText('GORDTOPIA', 512, 165, 900);
+  g.fillStyle = '#ffd98a'; g.font = 'italic 600 66px "Instrument Sans", system-ui, sans-serif'; g.fillText('All Roads Lead Home', 512, 290);
   const tex = new THREE.CanvasTexture(cv); tex.colorSpace = THREE.SRGBColorSpace; tex.anisotropy = 8;
   const mat = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.7 });
   signMesh = new THREE.Mesh(new THREE.BoxGeometry(7.6, 2.95, 0.3), [mat, mat, mat, mat, mat, new THREE.MeshStandardMaterial({ color: 0x5e3d24 })]);
@@ -491,7 +491,7 @@ function launchFirework(at) {
   let pos;
   if (at) pos = at.clone();
   else {
-    // pick a spot in the upper part of the current view, beyond the house, over the lake and town
+    // pick a spot in the upper part of the current view, beyond the house, over the town
     const dist = camera.position.distanceTo(target);
     for (let tries = 0; tries < 6; tries++) {
       const n = new THREE.Vector3((Math.random() - 0.5) * 1.5, 0.25 + Math.random() * 0.55, 0.5).unproject(camera);
@@ -577,6 +577,51 @@ function playMusic() {
 }
 const PENTA = [-5, -3, 0, 2, 4, 7, 9, 12, 14, 16];
 
+// ---------------------------------------------------------------- live course (v5): the next course bounces down onto its ghost.
+// Place it as it meets the blueprint: Perfect, Good, or Placed. Every tap still lays the course; there is no miss.
+const liveMat = new THREE.MeshStandardMaterial({ roughness: 0.75, metalness: 0, transparent: true, opacity: 0.93, emissive: new THREE.Color(0xffd27a), emissiveIntensity: 0 });
+const LIVEMAX = Math.max(...byStage.map((l) => l.length));
+const live = new THREE.InstancedMesh(new THREE.BoxGeometry(1, 1, 1), liveMat, LIVEMAX);
+live.instanceMatrix.setUsage(THREE.DynamicDrawUsage); live.setColorAt(0, new THREE.Color()); live.instanceColor.setUsage(THREE.DynamicDrawUsage);
+live.count = 0; live.frustumCulled = false; live.userData.noAO = true; scene.add(live);
+const TIMING = { T: 1.5, A: 5.2, perfect: 0.075, good: 0.2 };   // seconds; alignment happens once per T
+let lp = 0, lpFrames = 0, lpStage = -1, hitStop = 0, lastReal = performance.now();
+let perfects = 0, goods = 0, placedOnly = 0, userTaps = 0;
+function hardOn() { try { return !!(window.ledger && window.ledger.hard('dragon-house-blocks')); } catch (e) { return false; } }
+function winPerfect() { return hardOn() ? TIMING.perfect * 0.5 : TIMING.perfect; }
+function winGood() { return hardOn() ? TIMING.good * 0.6 : TIMING.good; }
+function liveOn() { return started && !autoOn && !finaleOn && placedStages < NSTAGE; }
+// speed ramps from rest to full over 6 frames (Swink), then holds
+function phaseNow() { if (hitStop > 0) return lp; return (lp + (performance.now() - lastReal) / 1000 * Math.min(1, lpFrames / 6)) % TIMING.T; }
+function msToPerfect() { if (!liveOn()) return null; return Math.round((TIMING.T - phaseNow()) * 1000); }
+function judgeNow() { const p = phaseNow(); const d = Math.min(p, TIMING.T - p); return d <= winPerfect() ? 'perfect' : d <= winGood() ? 'good' : 'placed'; }
+function updateLive(dt) {
+  if (!liveOn()) { live.count = 0; lastReal = performance.now(); return; }
+  const s = placedStages;
+  if (lpStage !== s) { lpStage = s; lp = TIMING.T * 0.5; lpFrames = 0; }
+  if (hitStop > 0) hitStop--;
+  else { lpFrames++; lp = (lp + dt * Math.min(1, lpFrames / 6)) % TIMING.T; }
+  lastReal = performance.now();
+  const off = TIMING.A * Math.sin(Math.PI * lp / TIMING.T);
+  const l = byStage[s];
+  for (let i = 0; i < l.length; i++) { const v = l[i]; _m4.compose(_v.set(v.x + 0.5, v.y + 0.5 + off, v.z + 0.5), _q.identity(), _s.setScalar(0.96)); live.setMatrixAt(i, _m4); _c.setHex(v.glass ? 0x2a3a50 : accentFor(v, palKey)); live.setColorAt(i, _c); }
+  _s.set(1, 1, 1);
+  live.count = l.length; live.instanceMatrix.needsUpdate = true; live.instanceColor.needsUpdate = true;
+  const near = 1 - Math.min(1, Math.min(lp, TIMING.T - lp) / 0.35);
+  liveMat.emissiveIntensity = near * 0.6;
+}
+function flashWhite() {
+  const f = $('#flash'); if (!f) return;
+  f.style.transition = 'none'; f.style.opacity = '0.62'; void f.offsetWidth;
+  f.style.transition = 'opacity .22s ease-out'; f.style.opacity = '0';
+}
+function showJudge(j) {
+  const el = $('#judge'); if (!el) return;
+  el.textContent = j === 'perfect' ? 'Perfect!' : j === 'good' ? 'Good' : 'Placed';
+  el.className = 'judge ' + j; void el.offsetWidth; el.classList.add('pop');
+  $('#perf').textContent = perfects;
+}
+
 // ---------------------------------------------------------------- building
 let placedStages = 0;   // stages tapped (ghost advances)
 let doneStages = 0;     // stages fully settled
@@ -607,12 +652,13 @@ function placeStage(origin, opts = {}) {
   // pops and an ascending chime arpeggio across the ripple
   const dur = maxD * k;
   const nPops = Math.min(14, Math.max(4, Math.round(list.length / 14)));
-  for (let i = 0; i < nPops; i++) sfx('pop', { when: (i / nPops) * dur, gain: 0.45 + Math.random() * 0.2, rate: 0.88 + Math.random() * 0.4 });
+  const gk = opts.soft ? 0.5 : 1;
+  for (let i = 0; i < nPops; i++) sfx('pop', { when: (i / nPops) * dur, gain: (0.45 + Math.random() * 0.2) * gk, rate: 0.88 + Math.random() * 0.4 });
   const base = Math.floor(s / 4);
   const notes = opts.fast ? 3 : 5;
   for (let i = 0; i < notes; i++) {
     const semi = PENTA[Math.min(PENTA.length - 1, base + i)];
-    sfx('chime', { when: (i / notes) * dur + 0.02, gain: 0.32, rate: Math.pow(2, semi / 12) });
+    sfx('chime', { when: (i / notes) * dur + 0.02, gain: 0.32 * gk, rate: Math.pow(2, semi / 12) });
   }
   setTimeout(() => settleStage(s), (dur + 0.4) * 1000);
   updateHud();
@@ -656,13 +702,13 @@ function updatePop(t) {
 }
 function resetBuild() {
   for (let s = 0; s < NSTAGE; s++) if (stageMeshes[s]) { scene.remove(stageMeshes[s]); stageMeshes[s].geometry.dispose(); stageMeshes[s] = null; }
-  active.length = 0; placedStages = 0; doneStages = 0; ghostU.uStage.value = 0;
+  active.length = 0; placedStages = 0; doneStages = 0; ghostU.uStage.value = 0; perfects = goods = placedOnly = userTaps = 0; lpStage = -1; $('#perf').textContent = '0'; guardMode = false;
   winPlaced.fill(0); winLit.fill(0); emblemGroup.visible = false; flagGroup.visible = false;
   finaleOn = false; autoOn = false; folks.length = 0; folkBody.count = folkHead.count = 0;
   counter.target = 0; counter.val = 0; renderCounter();
   setNight(false); $('#finale').hidden = true; $('#finale').classList.remove('in'); document.body.classList.remove('fin'); controls.autoRotate = false;
   if (musicGain) musicGain.gain.setTargetAtTime(0, actx.currentTime, 0.6);
-  updateHud(); setHint('Tap the glowing blueprint to lay the stone foundation');
+  updateHud(); setHint('Tap as the course lands on its glowing blueprint');
 }
 
 // ---------------------------------------------------------------- counter
@@ -873,6 +919,7 @@ function pickOrigin(cx, cy) {
   return { origin: new THREE.Vector3(best.x + 0.5, best.y + 0.5, best.z + 0.5), hit: hits.length ? pt : null };
 }
 function onTap(cx, cy) {
+  if (guardMode) { placeGuardianAt(cx, cy); return; }
   if (placedStages >= NSTAGE) {
     // after the build: every tap is another firework
     const r = canvas.getBoundingClientRect();
@@ -886,11 +933,18 @@ function onTap(cx, cy) {
 }
 let taps = 0;
 function userPlace(origin) {
-  if (!placeStage(origin)) return;
-  taps++;
-  if (taps === 2) setHint('Pick James, Henry, or Oscar to paint the sash and trim');
-  else if (taps === 6) setHint('Try Night, or let Auto-build raise the rest');
-  else if (taps === 9) setHint('');
+  if (placedStages >= NSTAGE || guardMode) return;
+  const j = autoOn ? 'placed' : judgeNow();
+  if (!placeStage(origin, { soft: j === 'placed' })) return;
+  taps++; userTaps++;
+  if (j === 'perfect') { perfects++; if (!RM) { hitStop = 4; flashWhite(); } sfx('chime', { gain: 0.5, rate: 2 }); sfx('lamp', { gain: 0.35, rate: 1.6 }); }
+  else if (j === 'good') { goods++; sfx('chime', { gain: 0.3, rate: 1.5 }); }
+  else placedOnly++;
+  showJudge(j);
+  if (taps === 1 && j !== 'perfect') setHint('Tap the moment it lands on the blueprint for a Perfect');
+  else if (taps === 3) setHint('Pick James, Henry, or Oscar to paint the sash and trim');
+  else if (taps === 7) setHint('Try Night, or let Auto-build raise the rest');
+  else if (taps === 10 || (taps === 1 && j === 'perfect')) setHint('');
 }
 function setHint(t) { const h = $('#hint'); h.textContent = t; h.classList.toggle('show', !!t); }
 
@@ -922,6 +976,11 @@ function startFinale() {
   if (finaleOn) return;
   finaleOn = true;
   tweenCounter(3425);
+  try { if (window.ledger) { const nb = HV.length; const hand = userTaps > 0;
+    window.ledger.done('dragon-house-blocks', fmt(nb) + (hand && perfects ? ' blocks placed, ' + perfects + ' perfect.' : ' blocks placed. The house is lit.'), { blocks: nb, sheets: NSTAGE, perfects, goods, hard: hardOn() });
+    window.ledger.add('blocks', nb); if (perfects) window.ledger.add('perfects', perfects); } } catch (e) { /* storage is optional */ }
+  $('#fin-perf').textContent = userTaps ? `${perfects} perfect, ${goods} good, of ${NSTAGE} sheets` + (hardOn() ? ' (hard)' : '') : 'Auto-built, start to finish';
+  const gOk = !guardPlaced; $('#fin-guard').hidden = !gOk; $('#guard-line').hidden = !gOk;
   for (const f of folks) planFolk(f, false);
   sfx('cheer', { gain: 0.8 }); sfx('rise', { gain: 0.5, rate: 0.8 });
   setNight(true);
@@ -933,9 +992,9 @@ function startFinale() {
   setTimeout(() => sfx('fireworks', { gain: 0.6, rate: 0.96 }), 11800);
   setTimeout(() => sfx('fireworks', { gain: 0.5, rate: 1.04 }), 21800);
   setTimeout(() => { sfx('cheer', { gain: 0.6, rate: 1.05 }); }, 3800);
-  setTimeout(() => { const f = $('#finale'); f.hidden = false; document.body.classList.add('fin'); requestAnimationFrame(() => f.classList.add('in')); $('#fin-again').focus({ preventScroll: true }); }, RM ? 600 : 3600);
+  setTimeout(() => { const f = $('#finale'); f.hidden = false; document.body.classList.add('fin'); requestAnimationFrame(() => f.classList.add('in')); ($('#fin-guard').hidden ? $('#fin-again') : $('#fin-guard')).focus({ preventScroll: true }); }, RM ? 600 : 3600);
   setHint('');
-  $('#live').textContent = 'The house is complete. Home, built block by block. Restored by Eric.';
+  $('#live').textContent = 'The house is complete. Home, built block by block. Eric\'s 1898 Queen Anne.';
 }
 function updateFinale(t) {
   if (!finaleOn) return;
@@ -961,11 +1020,13 @@ function setPalette(k) {
   sfx('chime2', { gain: 0.2, rate: 1.4 });
 }
 function toggleNight() { initAudio(); setNight(nightTarget < 0.5); }
-function toggleMute() {
-  muted = !muted; if (master) master.gain.value = muted ? 0 : 0.9;
+function applyMute(m) {
+  muted = !!m; if (master) master.gain.value = muted ? 0 : 0.9;
   const b = $('#snd'); b.setAttribute('aria-pressed', muted ? 'false' : 'true'); b.setAttribute('aria-label', muted ? 'Sound off' : 'Sound on');
   b.classList.toggle('off', muted);
 }
+// one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back
+function toggleMute() { if (window.ledger) window.ledger.setSound(muted); else applyMute(!muted); }
 function toggleFullscreen() {
   const el = document.documentElement;
   if (!document.fullscreenElement) (el.requestFullscreen || el.webkitRequestFullscreen)?.call(el);
@@ -979,6 +1040,7 @@ for (const b of document.querySelectorAll('[data-pal]')) {
 $('#auto').addEventListener('click', () => startAuto());
 $('#night').addEventListener('click', toggleNight);
 $('#snd').addEventListener('click', toggleMute);
+if (window.ledger) window.ledger.bindSound((on) => applyMute(!on));
 if (!(document.fullscreenEnabled || document.webkitFullscreenEnabled)) $('#fs').hidden = true;
 $('#fs').addEventListener('click', toggleFullscreen);
 $('#qbtn').addEventListener('click', () => { const m = $('#qmenu'); m.hidden = !m.hidden; $('#qbtn').setAttribute('aria-expanded', m.hidden ? 'false' : 'true'); });
@@ -992,10 +1054,102 @@ async function begin(auto) {
   controls.autoRotate = false;
   await initAudio();
   if (auto) startAuto();
-  else setHint('Tap the glowing blueprint to lay the stone foundation');
+  else setHint('Tap as the course lands on its glowing blueprint');
 }
 $('#go').addEventListener('click', () => begin(false));
 $('#go-auto').addEventListener('click', () => begin(true));
+
+// ---------------------------------------------------------------- guardian (v5): a protector and a torch-beacon boundary
+// Original art: a squat stone-and-brass sentinel holding up a lantern. Placing it sets ledger.guardian,
+// which protects plates in Doing the Most. Nothing here borrows any game's art.
+let guardMode = false, guardPlaced = false;
+const guardGroup = new THREE.Group(); guardGroup.visible = false; scene.add(guardGroup);
+const beaconFlames = [];
+let houseBox = null;
+function hb() { if (houseBox) return houseBox; let x0 = 1e9, x1 = -1e9, z0 = 1e9, z1 = -1e9; for (const v of HV) { x0 = Math.min(x0, v.x); x1 = Math.max(x1, v.x); z0 = Math.min(z0, v.z); z1 = Math.max(z1, v.z); } houseBox = { cx: (x0 + x1) / 2 + 0.5, cz: (z0 + z1) / 2 + 0.5, rx: (x1 - x0) / 2 + 4.5, rz: (z1 - z0) / 2 + 4 }; return houseBox; }
+function buildGuardian() {
+  const g = new THREE.Group();
+  const M = (c, e = 0, m = 0) => new THREE.MeshStandardMaterial({ color: c, roughness: m ? 0.35 : 0.85, metalness: m, emissive: new THREE.Color(e ? c : 0x000000), emissiveIntensity: e });
+  const stone = M(0x8d877b), stone2 = M(0x6f6b62), brass = M(0xc19a48, 0, 0.75), teal = M(0x0f6b5a), lamp = M(0xffd27a, 2.4), visor = M(0xffe7a8, 1.6), wood = M(0x5a3a1e);
+  const parts = [
+    [-0.55, 0.55, 0, 0.75, 1.1, 0.85, stone2], [0.55, 0.55, 0, 0.75, 1.1, 0.85, stone2],   // legs
+    [0, 1.85, 0, 2.1, 1.5, 1.25, brass],                                                // brass torso
+    [0, 1.3, 0, 2.2, 0.32, 1.35, teal],                                                 // teal band (the emblem's color)
+    [0, 2.95, 0, 1.3, 0.85, 1.05, stone],                                               // stone helm
+    [0, 2.98, 0.54, 0.95, 0.16, 0.06, visor],                                           // one glowing visor slit
+    [0, 3.5, 0, 0.36, 0.3, 0.9, brass],                                                 // brass crest, front to back
+    [-1.35, 1.75, 0, 0.55, 1.35, 0.65, stone], [1.35, 2.35, 0, 0.55, 1.15, 0.65, stone], // arms, right one raised
+    [1.35, 3.6, 0, 0.14, 1.6, 0.14, wood],                                              // staff
+    [1.35, 4.55, 0, 0.55, 0.62, 0.55, lamp],                                            // lantern
+    [1.35, 4.95, 0, 0.7, 0.14, 0.7, brass],                                             // lantern cap
+  ];
+  for (const [x, y, z, w, h, d, m] of parts) { const b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), m); b.position.set(x, y, z); b.castShadow = true; g.add(b); }
+  const pl = new THREE.PointLight(0xffc977, 0, 18, 1.6); pl.position.set(1.35, 4.6, 0.3); g.add(pl); g.userData.light = pl;
+  return g;
+}
+function buildBeacons() {
+  const B = hb(); const n = 10; const post = new THREE.MeshStandardMaterial({ color: 0x6f6b62, roughness: 0.9 });
+  for (let i = 0; i < n; i++) {
+    const a = i / n * Math.PI * 2 + Math.PI / 2;
+    const x = B.cx + Math.cos(a) * B.rx, z = B.cz + Math.sin(a) * B.rz;
+    const p = new THREE.Mesh(new THREE.BoxGeometry(0.7, 3.0, 0.7), post); p.position.set(x, 1.5, z); p.castShadow = true; guardGroup.add(p);
+    const fm = new THREE.MeshStandardMaterial({ color: 0x3a2a18, emissive: new THREE.Color(0xffb347), emissiveIntensity: 0, roughness: 0.6 });
+    const f = new THREE.Mesh(new THREE.BoxGeometry(1.0, 1.0, 1.0), fm); f.position.set(x, 3.5, z); guardGroup.add(f); beaconFlames.push(f);
+  }
+}
+let guardian = null;
+function offerGuardian() {
+  if (guardPlaced) return;
+  const f = $('#finale'); f.classList.remove('in'); f.hidden = true; document.body.classList.remove('fin');
+  guardMode = true; controls.autoRotate = false; flyTo(0.62, 1.12, fitDistance() * 1.05, RM ? 0.01 : 1.2);
+  setHint('Tap the front yard to place your guardian');
+  $('#live').textContent = 'Tap the front yard to place a guardian.';
+}
+function groundAt(cx, cy) {
+  const r = canvas.getBoundingClientRect();
+  ndc.set((cx - r.left) / r.width * 2 - 1, -((cy - r.top) / r.height) * 2 + 1);
+  ray.setFromCamera(ndc, camera);
+  const g = new THREE.Vector3(); if (!ray.ray.intersectPlane(new THREE.Plane(new THREE.Vector3(0, 1, 0), 0), g)) return null;
+  return g;
+}
+function placeGuardianAt(cx, cy) {
+  const B = hb(); let g = groundAt(cx, cy) || new THREE.Vector3(B.cx + 4, 0, B.cz + B.rz + 1.5);
+  // the guardian keeps to the yard, just inside the beacon line, never inside the house
+  g.x = clamp(g.x, YARD.x0 + 1, YARD.x1 - 1); g.z = clamp(g.z, YARD.z0 - 1, YARD.z1 - 1.2);
+  if (Math.abs(g.x - 11) < 5 && g.z > 19.5) g.x = g.x < 11 ? 2.2 : 17;   // keep clear of the Gordtopia sign
+  if (g.x > 3 && g.x < 8) g.x = g.x < 5.5 ? 2.2 : 8.8;                   // and off the front path
+  guardMode = false; guardPlaced = true; initAudio();
+  if (!guardian) { guardian = buildGuardian(); buildBeacons(); guardGroup.add(guardian); }
+  guardian.position.set(g.x, 0, g.z); guardian.scale.setScalar(1.5); guardian.rotation.y = Math.atan2(g.x - B.cx, g.z - B.cz) * 0.4;
+  guardGroup.visible = true; setHint(''); document.body.classList.add('fin');
+  sfx('chime2', { gain: 0.5, rate: 0.8 }); sfx('rise', { gain: 0.4, rate: 0.9 });
+  if (!RM) { const c0 = new THREE.Vector3(g.x, 2.5, g.z); for (let k = 0; k < 24; k++) emitSpark(c0, 0xffd27a); }
+  guardian.userData.light.intensity = 3.2;
+  // beacons light one by one around the boundary
+  beaconFlames.forEach((f, i) => setTimeout(() => {
+    f.material.emissiveIntensity = 3.4; f.material.color.setHex(0xffb347);
+    sfx('lamp', { gain: 0.45, rate: 0.85 + i * 0.05 });
+    if (!RM) for (let k = 0; k < 6; k++) emitSpark(f.position, 0xffc46b);
+    if (i === beaconFlames.length - 1) guardianDone();
+  }, RM ? 0 : 300 + i * 240));
+}
+function guardianDone() {
+  try { if (window.ledger) {
+    window.ledger.setGuardian(true);
+    window.ledger.post('guardian', 'Guardian on watch at the Dragon House. Plates in Doing the Most now glow and land safe.');
+    window.ledger.first('guardian', 'First guardian placed');
+  } } catch (e) { /* storage is optional */ }
+  sfx('cheer', { gain: 0.5, rate: 1.1 });
+  $('#live').textContent = 'Guardian on watch. The torch beacons are lit.';
+  setTimeout(() => { const c = $('#guardcard'); c.hidden = false; requestAnimationFrame(() => c.classList.add('in')); $('#guard-board').focus({ preventScroll: true }); }, RM ? 100 : 900);
+}
+function guardianPoint() {
+  const p = new THREE.Vector3(-4, 0, 21.5).project(camera);
+  const r = canvas.getBoundingClientRect(); return [r.left + (p.x + 1) / 2 * r.width, r.top + (1 - p.y) / 2 * r.height];
+}
+$('#fin-guard').addEventListener('click', offerGuardian);
+$('#guard-watch').addEventListener('click', () => { const c = $('#guardcard'); c.classList.remove('in'); c.hidden = true; setHint('Tap the sky for another firework'); });
+{ const gi = $('#guardimg'); if (gi) gi.addEventListener('error', () => gi.remove()); }
 
 // ---------------------------------------------------------------- loop
 const clock = new THREE.Clock();
@@ -1012,7 +1166,7 @@ function frame() {
   if (flagMat) flagMat.userData.t.value = t;
   updateKeys(dt); updateCamTween(dt);
   controls.update(dt);
-  updateAuto(dt); updatePop(t); updateNight(dt); updateCounter(dt);
+  updateAuto(dt); updateLive(dt); if (hitStop <= 0) updatePop(t); updateNight(dt); updateCounter(dt);
   updateFolks(dt, t); updateDragon(dt, t, night); updateFinale(t); updateParticles(dt);
   if (!RM) {
     for (let i = 0; i < LEAVES; i++) {
@@ -1033,9 +1187,13 @@ function frame() {
 
 // ---------------------------------------------------------------- QA hooks (read-only helpers for the test harness)
 window.__dh = {
-  state: () => ({ placedStages, doneStages, NSTAGE, finaleOn, night, counter: Math.round(counter.val), folks: folks.length, quality: qKey, dpr: dprNow, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, gl: (() => { const g = renderer.getContext(); const ext = g.getExtension('WEBGL_debug_renderer_info'); return ext ? g.getParameter(ext.UNMASKED_RENDERER_WEBGL) : 'n/a'; })() }),
+  state: () => ({ placedStages, doneStages, NSTAGE, finaleOn, perfects, goods, placedOnly, userTaps, hard: hardOn(), guardMode, guardPlaced, phase: guardMode ? 'guardian' : finaleOn ? 'finale' : started ? 'build' : 'intro', window: { perfect: winPerfect(), good: winGood() }, night, counter: Math.round(counter.val), folks: folks.length, quality: qKey, dpr: dprNow, calls: renderer.info.render.calls, tris: renderer.info.render.triangles, gl: (() => { const g = renderer.getContext(); const ext = g.getExtension('WEBGL_debug_renderer_info'); return ext ? g.getParameter(ext.UNMASKED_RENDERER_WEBGL) : 'n/a'; })() }),
   frames: () => { const a = Array.from(frameTimes.slice(0, ftCount)).sort((x, y) => x - y); const q = (p) => a[Math.min(a.length - 1, Math.floor(a.length * p))]; return { n: a.length, avg: a.reduce((s, x) => s + x, 0) / Math.max(1, a.length), p50: q(0.5), p95: q(0.95), p99: q(0.99) }; },
   resetFrames: () => { ftHead = 0; ftCount = 0; },
+  msToPerfect, guardianPoint,
+  guardianOffered: () => !$('#finale').hidden && !$('#fin-guard').hidden,
+  guardCardShown: () => !$('#guardcard').hidden,
+  guardInfo: () => ({ box: hb(), at: guardian ? guardian.position.toArray() : null, lit: beaconFlames.filter((f) => f.material.emissiveIntensity > 1).length, beacons: beaconFlames.map((f) => f.position.toArray()) }),
   nextTapPoint: () => {
     if (placedStages >= NSTAGE) return null;
     const l = byStage[placedStages];
@@ -1075,6 +1233,7 @@ window.__dh = {
   if (!RM) controls.autoRotate = true, controls.autoRotateSpeed = 0.35;
   updateHud();
   if (QS.get('night') === '1') setNight(true);
+  try { if (window.ledger) window.ledger.hardToggle('dragon-house-blocks', $('#intro .hardhost'), () => {}, 'tighter window'); } catch (e) { /* optional */ }
   $('#intro').classList.add('in');
   requestAnimationFrame(frame);
 })();

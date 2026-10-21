@@ -36,5 +36,20 @@
  "media/frame.mp3": {
   "tool": "elevenlabs",
   "prompt": "eleven_text_to_sound_v2: bright music box twinkle and glockenspiel ding rising (ElevenLabs flow meIlVhJNNJBKAnaddAIX, gen tWIr5jWlJrZ6oOJVsIzm)"
+ },
+ "_note_2026_10_20": "Wave 2: all Rogaland and Syttende Mai copy removed from the page, keepsake text and rubric (unverified against the Eric profile; no heritage claims). Prompt records below are kept as historical records of how assets were made.",
+ "media/bench-wide-1920.jpg": {
+  "tool": "higgsfield",
+  "prompt": "derived: media/bench-wide@2x.jpg (the Higgsfield bytedance 4k upscale already logged here) resized with Lanczos to 1920 wide, so a 1920x1080 PC screen at DPR 1 gets native pixels instead of the 1344 px 1x stretched 1.44x",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
+ },
+ "media/bench-tall@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 437ae4e4-4e21-4685-a6cd-e81ffbdd867b (the existing 1x file's source) to 2160x3856, Lanczos to 1500 wide, JPEG q82; served as the 2x of an image-set/srcset so phones at DPR 2 to 3 get native pixels",
+  "job": "c8e71ca0-af31-46fa-b1c5-f0ad578a7736",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
  }
 }

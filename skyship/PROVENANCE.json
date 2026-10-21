@@ -34,5 +34,13 @@
  "media/skyship-mark.png": {
   "tool": "recipient-own-mark",
   "prompt": "Eric's own Sky Ship Studios logo, skyshipstudios.com original, used as homage. Source: https://www.skyshipstudios.com/images/skyshipstudios/banner.png (kept byte-identical in ../ref/banner.png). Only change: the banner's separate site-header backdrop layer (a large ghost ship, pure white at alpha 117) set transparent and the canvas cropped to the mark; no mark pixel recolored, redrawn, or moved. Not connector-made on purpose: Gordon asked for an homage to THIS logo."
+ },
+ "media/clouds@2x.jpg": {
+  "tool": "higgsfield",
+  "model": "bytedance_image_upscale 2k",
+  "prompt": "upscale of job 97ba027c-81ee-42d3-b9d8-0c4fbc6b6656 (media/clouds.jpg's source), Lanczos to 1440 wide, JPEG q80; 2x for the phone cloud curtains and the PC canvas at DPR 2",
+  "job": "c7131dee-1d99-435c-967a-4e94e2396040",
+  "date": "2026-10-20",
+  "wave": "v5 wave 3"
  }
 }

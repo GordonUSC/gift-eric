@@ -1,4 +1,4 @@
-// Dragon House in Blocks: the yard, the lake, and a tiny Stoughton street, in voxels.
+// Dragon House in Blocks: the yard and a tiny Stoughton street, in voxels.
 import { Vox } from './house.js';
 
 function mulberry32(a) {

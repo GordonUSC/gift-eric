@@ -1,15 +1,16 @@
 <!doctype html>
-<!-- STYLE: Rogaland rosemaling workbench (Norwegian folk-painted woodwork, double-loaded brush, gold and teal) | WHY: Stoughton is a center of the symmetrical Rogaland style, so the medium itself is the homage and Eric's emblem becomes the painted panel | ALT: Scandinavian modernist flat print (Marimekko-like blocks on white), cleaner but it would lose the hand of the brush -->
+<!-- STYLE: Rosemaling workbench (folk-painted woodwork, double-loaded brush, gold and teal) | WHY: a mirror brush and his own emblem make the panel his, so the medium itself is the homage | ALT: Scandinavian modernist flat print (Marimekko-like blocks on white), cleaner but it would lose the hand of the brush -->
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Rosemaling</title>
-<meta name="description" content="Paint Rogaland-style rosemaling inside Eric's Dragon House emblem with a mirror brush that sings like a Hardanger fiddle.">
+<meta name="description" content="Paint symmetrical rosemaling inside Eric's Dragon House emblem with a mirror brush that sings like a Hardanger fiddle.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&family=Alegreya+Sans:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
+html{font-synthesis-weight:none}
 :root{
   --wood:#3a2616; --ink:#1f1a14; --cream:#f4e7cc; --cream2:#e9d6ae;
   --red:#b3282d; --ochre:#d9a23a; --bluegreen:#2f6f6b; --blue:#24466e;
@@ -18,19 +19,19 @@
 }
 *{box-sizing:border-box}
 html{font-size:clamp(16px,0.55vw + 10px,24px);-webkit-text-size-adjust:100%}
-body{margin:0;min-height:100vh;background:#2a1b0f;color:var(--cream);font-family:"Alegreya Sans",system-ui,sans-serif;font-size:1rem;line-height:1.45;overflow-x:hidden}
-.bg{position:fixed;inset:0;z-index:0;background:#2a1b0f url(media/bench-tall.jpg) center/cover no-repeat}
-@media (min-aspect-ratio:1/1){.bg{background-image:url(media/bench-wide.jpg);background-image:-webkit-image-set(url(media/bench-wide.jpg) 1x,url(media/bench-wide@2x.jpg) 2x);background-image:image-set(url(media/bench-wide.jpg) 1x,url(media/bench-wide@2x.jpg) 2x)}}
+body{margin:0;min-height:100vh;background:#2a1b0f;color:var(--cream);font-family:"Instrument Sans",system-ui,sans-serif;font-size:1rem;line-height:1.45;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;background:#2a1b0f url(media/bench-tall.jpg) center/cover no-repeat;background-image:-webkit-image-set(url(media/bench-tall.jpg) 1x,url(media/bench-tall@2x.jpg) 2x);background-image:image-set(url(media/bench-tall.jpg) 1x,url(media/bench-tall@2x.jpg) 2x)}
+@media (min-aspect-ratio:1/1){.bg{background-image:url(media/bench-wide-1920.jpg);background-image:-webkit-image-set(url(media/bench-wide-1920.jpg) 1x,url(media/bench-wide@2x.jpg) 2x);background-image:image-set(url(media/bench-wide-1920.jpg) 1x,url(media/bench-wide@2x.jpg) 2x)}}
 .bg::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(20,12,6,.15),rgba(20,12,6,.72) 75%)}
 a{color:var(--ochre)}
-h1,h2,.serif{font-family:Alegreya,Georgia,serif}
+h1,h2,.serif{font-family:"Young Serif",Georgia,serif}
 .app{position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column}
 header.top{display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:max(12px,env(safe-area-inset-top)) 16px 8px}
 .back{display:inline-flex;align-items:center;min-height:44px;padding:0 .9rem;border-radius:999px;background:var(--panel);color:var(--cream);text-decoration:none;font-weight:700;border:1px solid var(--line)}
 .back:hover{border-color:var(--ochre)}
 header.top h1{margin:0;font-size:1.5rem;font-weight:800;letter-spacing:.02em;color:var(--cream);text-shadow:0 2px 10px rgba(0,0,0,.6)}
 header.top h1 i{color:var(--ochre);font-weight:500}
-.iconbtn{display:inline-flex;align-items:center;gap:.4rem;min-width:44px;min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--cream);font:700 1rem "Alegreya Sans",sans-serif;cursor:pointer;padding:0 .8rem}
+.iconbtn{display:inline-flex;align-items:center;gap:.4rem;min-width:44px;min-height:44px;border-radius:999px;border:1px solid var(--line);background:var(--panel);color:var(--cream);font:700 1rem "Instrument Sans",sans-serif;cursor:pointer;padding:0 .8rem}
 .layout{flex:1;display:flex;flex-direction:column;gap:12px;padding:0 16px 16px}
 .stagewrap{position:relative;width:100%;display:flex;align-items:center;justify-content:center}
 .stage{position:relative;width:100%;aspect-ratio:1.37/1;touch-action:none;-webkit-user-select:none;user-select:none}
@@ -39,12 +40,12 @@ header.top h1 i{color:var(--ochre);font-weight:500}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:12px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .panel h2{margin:0 0 .4rem;font-size:1.05rem;font-weight:700;color:var(--ochre);letter-spacing:.04em}
 .row{display:flex;flex-wrap:wrap;gap:8px}
-.tool{position:relative;min-height:48px;min-width:48px;flex:1 1 0;white-space:nowrap;border-radius:12px;border:2px solid transparent;background:rgba(244,231,204,.08);color:var(--cream);font:700 1rem "Alegreya Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.3rem .5rem}
+.tool{position:relative;min-height:48px;min-width:48px;flex:1 1 0;white-space:nowrap;border-radius:12px;border:2px solid transparent;background:rgba(244,231,204,.08);color:var(--cream);font:700 1rem "Instrument Sans",sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:.4rem;padding:.3rem .5rem}
 .tool svg{width:28px;height:28px;flex:none}
 .tool[aria-pressed="true"]{border-color:var(--ochre);background:rgba(217,162,58,.18)}
 .tool:hover{background:rgba(244,231,204,.16)}
 .tool:focus-visible,.chip:focus-visible,.big:focus-visible,.iconbtn:focus-visible,.back:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
-kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);background:var(--cream2);border-radius:5px;padding:0 .35em;min-width:1.4em;text-align:center;box-shadow:0 2px 0 var(--goldlo)}
+kbd{display:none;font:700 .8rem "Instrument Sans",sans-serif;color:var(--ink);background:var(--cream2);border-radius:5px;padding:0 .35em;min-width:1.4em;text-align:center;box-shadow:0 2px 0 var(--goldlo)}
 .brushes{display:grid;grid-template-columns:1fr 1fr}
 .brushes .tool{justify-content:flex-start;padding-left:.6rem}
 .brushes .tool kbd{margin-left:auto}
@@ -54,8 +55,9 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
 .chip kbd{position:absolute;right:-4px;bottom:-6px}
 .chipname{margin:.5rem 0 0;font-size:1rem;color:var(--cream2);min-height:1.4em}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
-.big{flex:1 1 auto;min-height:52px;border-radius:14px;border:0;font:800 1.1rem Alegreya,serif;cursor:pointer;padding:.4rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.big{flex:1 1 auto;min-height:52px;border-radius:14px;border:0;font:800 1.1rem "Young Serif",serif;cursor:pointer;padding:.4rem 1rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
 .big.bloom{background:linear-gradient(180deg,#e7b84b,#b8841f);color:#2a1606;box-shadow:0 4px 0 #6b4a0e,0 8px 24px rgba(217,162,58,.35)}
+.big.bloom.wait{filter:saturate(.45) brightness(.92);font-size:1rem}
 .big.bloom:active{transform:translateY(2px);box-shadow:0 2px 0 #6b4a0e}
 .big.soft{background:rgba(244,231,204,.1);color:var(--cream);border:1px solid var(--line)}
 .size{display:flex;align-items:center;gap:.6rem}
@@ -73,7 +75,7 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
 .card h2{margin:0;font-size:2.2rem;line-height:1.05;color:var(--cream)}
 .card h2 i{color:var(--ochre)}
 .card p{margin:0;font-size:1.05rem;color:var(--cream2)}
-.card .fact{border-left:3px solid var(--gold);padding-left:.8rem;font-style:italic;font-family:Alegreya,serif}
+.card .fact{border-left:3px solid var(--gold);padding-left:.8rem;font-style:italic;font-family:"Instrument Sans",system-ui,sans-serif}
 .card .go{justify-self:start}
 .nojs{display:block;background:rgba(179,40,45,.2);border:1px solid var(--red);border-radius:12px;padding:.7rem .9rem}
 .js .nojs{display:none}
@@ -89,13 +91,13 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
 #keep{width:100%;height:auto;max-height:72vh;object-fit:contain;border-radius:6px;box-shadow:0 30px 90px rgba(0,0,0,.7)}
 .finale.anim #keep{animation:hang 1.6s cubic-bezier(.2,.8,.2,1) both}
 @keyframes hang{0%{opacity:0;transform:scale(.82) rotate(-2deg);filter:brightness(1.6)}60%{opacity:1;transform:scale(1.02) rotate(.4deg)}100%{transform:none;filter:none}}
-.finale p{margin:0;text-align:center;font-family:Alegreya,serif;font-size:1.2rem;color:var(--cream)}
+.finale p{margin:0;text-align:center;font-family:"Young Serif",serif;font-size:1.2rem;color:var(--cream)}
 .finale .actions{justify-content:center;width:100%;max-width:44rem}
 .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:40;background:var(--panel);border:1px solid var(--gold);border-radius:999px;padding:.5rem 1rem;font-weight:700;opacity:0;transition:opacity .3s;pointer-events:none}
 .toast.on{opacity:1}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 @media (max-width:999px){
-  #fs{display:none!important} header.top h1{font-size:1.3rem} header.top h1 i{display:none} .card img{max-width:11rem}
+  #fs{display:none!important} #snd .sl,#snd kbd{display:none} header.top h1{font-size:1.3rem} header.top h1 i{display:none} .card img{max-width:11rem}
   .side{display:contents}
   .stagewrap{order:0;position:sticky;top:0;z-index:5;padding:6px 0;background:linear-gradient(180deg,rgba(30,19,10,.92) 80%,rgba(30,19,10,0))}
   .brushp{order:1}.mirrorp{order:2}.paintp{order:3}.actp{order:4}.lorep{order:5}
@@ -112,14 +114,15 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
 }
 @media (prefers-reduced-motion:reduce){ .finale.anim #keep{animation:none} .big.bloom{transition:none} }
 </style>
+<script src="../../js/ledger.js"></script>
 </head>
 <body>
 <div class="bg" aria-hidden="true"></div>
 <div class="app">
   <header class="top">
-    <a class="back" href="../../index.html">&larr; Back to the board</a>
+    <a class="back" href="../../index.html" data-board="../../">&larr; Back to the board</a>
     <h1>Rosemaling <i>for Eric</i></h1>
-    <button class="iconbtn jsonly" id="fs" type="button" title="Fullscreen (F)" style="align-items:center;gap:.4rem">Fullscreen <kbd>F</kbd></button>
+    <span style="display:flex;gap:.5rem;align-items:center"><button class="iconbtn jsonly" id="snd" type="button" aria-pressed="true" aria-label="Sound on" title="Sound on or off (S)"><span aria-hidden="true">&#9835;</span><span class="sl">Sound on</span> <kbd>S</kbd></button><button class="iconbtn jsonly" id="fs" type="button" title="Fullscreen (F)" style="align-items:center;gap:.4rem">Fullscreen <kbd>F</kbd></button></span>
   </header>
 
   <main class="layout">
@@ -143,8 +146,8 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
         <div class="size jsonly" style="margin-top:.6rem"><label for="sz">Size</label><input id="sz" type="range" min="0.5" max="1.8" step="0.05" value="1" aria-label="Brush size"><kbd>[ ]</kbd></div>
       </div>
       <div class="panel lorep">
-        <h2>Rogaland, in Stoughton</h2>
-        <p class="lore">Rosemaling is Norway's decorative folk painting: C and S scrolls, acanthus and flowers. In the <b>Rogaland</b> style a symmetrical design of scrolls and leaves frames a center. <b>Stoughton is a center of Rogaland painting.</b> Here, the center is the dragon you drew.</p>
+        <h2>Mirror the scrolls</h2>
+        <p class="lore">Rosemaling is Norway's decorative folk painting: C and S scrolls, acanthus and flowers. Here the mirror brush keeps it symmetrical: scrolls and leaves frame a center, and the center is the dragon you drew.</p>
       </div>
     </section>
 
@@ -181,11 +184,11 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
 
 <div class="intro" id="intro">
   <div class="card">
-    <img src="media/bowl.jpg" srcset="media/bowl.jpg 700w, media/bowl@2x.jpg 1400w" sizes="18rem" alt="A Rogaland-style rosemaling bowl: symmetrical red and ochre scrolls, tulips and a central rose on deep teal.">
+    <img src="media/bowl.jpg" srcset="media/bowl.jpg 700w, media/bowl@2x.jpg 1400w" sizes="18rem" alt="A rosemaling bowl: symmetrical red and ochre scrolls, tulips and a central rose on deep teal.">
     <h2>Rosemaling<br><i>in the Dragon House oval</i></h2>
-    <p>Stoughton hosts the largest Syttende Mai celebration in the United States, and its painters keep Norway's rose painting alive. So here is a panel shaped like the emblem you designed, a teal oval with a gold rim and a white dragon-prow, waiting for paint.</p>
-    <p class="fact">Paint one side. The mirror paints the other. Every stroke rings like a Hardanger fiddle.</p>
-    <p class="nojs">This painting table needs JavaScript to run. It is a mirror-symmetry rosemaling brush inside Eric's emblem, with fiddle notes and a framed keepsake at the end. <a href="../../index.html">Back to the board</a>.</p>
+    <p>Here is a panel shaped like the emblem you designed, a teal oval with a gold rim and a white dragon-prow, waiting for paint.</p>
+    <p class="fact">Paint one side. The mirror paints the other. Every stroke rings like a Hardanger fiddle. Paint 12 strokes, then Bloom frames it.</p>
+    <p class="nojs">This painting table needs JavaScript to run. It is a mirror-symmetry rosemaling brush inside Eric's emblem, with fiddle notes and a framed keepsake at the end. <a href="../../index.html" data-board="../../">Back to the board</a>.</p>
     <button class="big bloom go jsonly" id="begin" type="button">Pick up the brush</button>
   </div>
 </div>
@@ -197,7 +200,7 @@ kbd{display:none;font:700 .8rem "Alegreya Sans",sans-serif;color:var(--ink);back
     <div class="actions">
       <button class="big bloom" id="save" type="button">Save as PNG</button>
       <button class="big soft" id="again" type="button">Keep painting</button>
-      <a class="big soft" href="../../index.html" style="text-decoration:none">Back to the board</a>
+      <a class="big soft" href="../../index.html" data-board="../../" style="text-decoration:none">Back to the board</a>
     </div>
   </div>
 </div>
@@ -214,7 +217,7 @@ var PAL = [
   {n:'Ochre', c:'#d9a23a', h:'#f3cf7a', k:'w'},
   {n:'Cream', c:'#f1e2c0', h:'#fffaf0', k:'e'},
   {n:'Blue-green', c:'#3f8a7e', h:'#7cc0ae', k:'r'},
-  {n:'Telemark blue', c:'#2b5a8c', h:'#6f9bd0', k:'t'},
+  {n:'Blue', c:'#2b5a8c', h:'#6f9bd0', k:'t'},
   {n:'Liner black', c:'#1c2320', h:'#4a5a52', k:'y'},
   {n:"Eric's teal", c:'#1a9a92', h:'#6fdcd2', k:'u'},
   {n:"Eric's gold", c:'#e0b03a', h:'#fff0a8', k:'i'}
@@ -502,7 +505,13 @@ function addGroup(items,now,noteOpts){
   var start=S.items.length;
   items.forEach(function(it){ it.t0=now+it.delay; if(RM){it.dur=1;it.t0=now;} S.items.push(it); growing.push(it); });
   S.groups.push([start,S.items.length]);
+  updateBloom();
 }
+var NEED=12, logged=0;
+function strokes(){ return S.groups.filter(function(g){return !g.bloom;}).length; }
+function updateBloom(){ var b=$('bloom'), n=strokes(); if(!b) return; var ok=n>=NEED;
+  b.classList.toggle('wait',!ok); b.setAttribute('aria-disabled',ok?'false':'true');
+  b.innerHTML = ok ? 'Bloom <kbd>B</kbd>' : 'Keep painting: '+n+' of '+NEED; }
 function tick(now){
   if(growing.length){
     gP.save(); clipOval(gP,CX,CY,R);
@@ -593,6 +602,7 @@ var painted=0;
 /* ---------- bloom ---------- */
 function bloom(){
   if(S.phase!=='paint') return;
+  if(strokes()<NEED){ toast('Keep painting: '+strokes()+' of '+NEED+'. Bloom opens at '+NEED+' strokes.'); return; }
   S.phase='bloom'; ensureAudio(); play('bloom',0.9);
   $('bloom').disabled=true;
   var now=performance.now(), all=[], N=34;
@@ -617,14 +627,14 @@ function bloom(){
   var t2=arc(0.36,0.52,-Math.PI/2-0.3,0.08,0.2,0.006); t2.forEach(function(p){p[2]=1;});
   var tu2=genTulip(t2,0.8,'#b3282d','#e0574c','#d9a23a','#3f8a7e'); tu2.forEach(function(it){it.delay+=N*55*1.05;}); tu2[0].note=SCALE[9]; tu2[0].vol=0.35;
   var group=all.concat(mirrorItems(q,4)).concat(mirrorItems(q2,2)).concat(mirrorItems(tul,2)).concat(mirrorItems(lv,4)).concat(mirrorItems(ro,2)).concat(mirrorItems(tu2,2));
-  addGroup(group,now);
+  addGroup(group,now); S.groups[S.groups.length-1].bloom=true; updateBloom();
   var finishAt=RM?400:group.reduce(function(m,it){return Math.max(m,it.delay+it.dur);},0)+900;
   setTimeout(frameIt,finishAt);
 }
 
 /* ---------- keepsake ---------- */
 function renderKeepsake(Wk){
-  var Hk=Math.round(Wk*0.86), c=document.createElement('canvas'); c.width=Wk; c.height=Hk; var g=c.getContext('2d');
+  var Hk=Math.round(Wk*0.86), c=document.createElement('canvas'); c.width=Wk; c.height=Hk; var g=c.getContext('2d',{willReadFrequently:true});
   // carved gold frame
   var fw=Wk*0.055;
   var gold=goldGrad(g,Wk/2,Hk/2,Wk/2);
@@ -644,7 +654,7 @@ function renderKeepsake(Wk){
   g.save(); g.shadowColor='rgba(0,0,0,.35)'; g.shadowBlur=Wk*0.01; g.strokeStyle='rgba(0,0,0,.25)'; g.lineWidth=Wk*0.004; g.strokeRect(mx,my,mw,mh); g.restore();
   // painting
   var pR=mw*0.40, pcx=Wk/2, pcy=my+mh*0.43;
-  var tmp=document.createElement('canvas'); tmp.width=Wk; tmp.height=Hk; var t=tmp.getContext('2d');
+  var tmp=document.createElement('canvas'); tmp.width=Wk; tmp.height=Hk; var t=tmp.getContext('2d',{willReadFrequently:true});
   drawGround(t,pcx,pcy,pR); g.drawImage(tmp,0,0);
   t.clearRect(0,0,Wk,Hk); t.save(); clipOval(t,pcx,pcy,pR);
   S.items.forEach(function(it){drawItemRange(t,it,0,it.p.length-1,pcx,pcy,pR);}); t.restore();
@@ -652,11 +662,11 @@ function renderKeepsake(Wk){
   drawDragon(g,pcx,pcy,pR,0.42); drawRim(g,pcx,pcy,pR);
   // caption
   g.fillStyle='#3a2616'; g.textAlign='center'; g.textBaseline='alphabetic';
-  g.font='italic 700 '+Math.round(Wk*0.034)+'px Alegreya, Georgia, serif';
+  g.font='italic 700 '+Math.round(Wk*0.034)+'px "Instrument Sans", system-ui, sans-serif';
   g.fillText('Painted by Eric, Stoughton, Wisconsin',Wk/2,my+mh*0.885);
   var d=new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'});
-  g.font='500 '+Math.round(Wk*0.017)+'px "Alegreya Sans", sans-serif'; g.fillStyle='#7a5a2a';
-  g.fillText('Rosemaling in the Rogaland way  ·  '+d,Wk/2,my+mh*0.94);
+  g.font='500 '+Math.round(Wk*0.017)+'px "Instrument Sans", sans-serif'; g.fillStyle='#7a5a2a';
+  g.fillText('Rosemaling at the Dragon House  ·  '+d,Wk/2,my+mh*0.94);
   return c;
 }
 var keepCanvas=null;
@@ -669,8 +679,9 @@ function frameIt(){
     var f=$('finale'); f.classList.add('on'); if(!RM) f.classList.add('anim');
     $('save').focus({preventScroll:true});
     window.__rosemalingDone=true;
+    try{ var n=strokes(); if(window.ledger){ ledger.done('rosemaling',n+' strokes. Framed for the Dragon House wall.',{strokes:n}); if(n>logged){ ledger.add('strokes',n-logged); logged=n; } } }catch(e){}
   };
-  if(document.fonts && document.fonts.load){Promise.all([document.fonts.load('italic 700 40px Alegreya'),document.fonts.load('500 20px "Alegreya Sans"')]).then(draw,draw);} else draw();
+  if(document.fonts && document.fonts.load){Promise.all([document.fonts.load('italic 700 40px "Instrument Sans"'),document.fonts.load('500 20px "Instrument Sans"')]).then(draw,draw);} else draw();
 }
 function savePNG(){
   if(!keepCanvas) return;
@@ -684,6 +695,9 @@ function savePNG(){
 function toast(t){var el=$('toast'); el.textContent=t; el.classList.add('on'); clearTimeout(toast.h); toast.h=setTimeout(function(){el.classList.remove('on');},2600);}
 
 /* ---------- audio ---------- */
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function applySound(on){ S.sound=!!on; if(master) master.gain.value=S.sound?1:0; var b=$('snd'); if(b){ b.setAttribute('aria-pressed',S.sound?'true':'false'); b.setAttribute('aria-label',S.sound?'Sound on':'Sound off'); var l=b.querySelector('.sl'); if(l) l.textContent=S.sound?'Sound on':'Sound off'; } }
+function setSound(on){ if(window.ledger) ledger.setSound(on); else applySound(on); }
 var AC=null, BUF={}, bedSrc=null, master=null, SCALE=[-5,-3,0,2,4,7,9,12,14,16], voices=0;
 function ensureAudio(){
   if(AC){ if(AC.state==='suspended') AC.resume(); return; }
@@ -721,15 +735,17 @@ setCol(0);
 document.querySelectorAll('[data-brush]').forEach(function(b){b.onclick=function(){setBrush(b.dataset.brush);};});
 document.querySelectorAll('[data-mirror]').forEach(function(b){b.onclick=function(){setMirror(+b.dataset.mirror);};});
 $('sz').oninput=function(){setSize(+this.value);};
-$('undo').onclick=function(){ if(S.phase!=='paint') return; var g=S.groups.pop(); if(!g) return; var rm=S.items.splice(g[0],g[1]-g[0]); growing=growing.filter(function(it){return rm.indexOf(it)<0;}); redrawPaint(); };
-$('clear').onclick=function(){ if(S.phase!=='paint') return; S.items=[]; S.groups=[]; growing=[]; redrawPaint(); };
+$('undo').onclick=function(){ if(S.phase!=='paint') return; var g=S.groups.pop(); if(!g) return; var rm=S.items.splice(g[0],g[1]-g[0]); growing=growing.filter(function(it){return rm.indexOf(it)<0;}); redrawPaint(); updateBloom(); };
+$('clear').onclick=function(){ if(S.phase!=='paint') return; S.items=[]; S.groups=[]; growing=[]; redrawPaint(); updateBloom(); };
 $('bloom').onclick=bloom;
-$('begin').onclick=function(){ $('intro').style.display='none'; S.phase='paint'; ensureAudio(); stage.focus&&stage.focus(); };
+$('begin').onclick=function(){ $('intro').style.display='none'; S.phase='paint'; ensureAudio(); updateBloom(); stage.focus&&stage.focus(); };
 $('save').onclick=savePNG;
 $('again').onclick=function(){ $('finale').classList.remove('on','anim'); S.phase='paint'; $('bloom').disabled=false; };
 $('fs').onclick=function(){ var d=document, el=d.documentElement;
   if(d.fullscreenElement||d.webkitFullscreenElement){(d.exitFullscreen||d.webkitExitFullscreen).call(d);} else if(el.requestFullscreen||el.webkitRequestFullscreen){(el.requestFullscreen||el.webkitRequestFullscreen).call(el);} };
 if(!(document.documentElement.requestFullscreen||document.documentElement.webkitRequestFullscreen)) $('fs').style.display='none';
+$('snd').onclick=function(){ ensureAudio(); setSound(!S.sound); };
+if(window.ledger) ledger.bindSound(applySound);
 cvC.addEventListener('pointerdown',down); window.addEventListener('pointermove',move,{passive:false}); window.addEventListener('pointerup',up); window.addEventListener('pointercancel',up);
 cvC.addEventListener('pointerleave',function(){S.hover=null;});
 window.addEventListener('keydown',function(e){
@@ -744,7 +760,7 @@ window.addEventListener('keydown',function(e){
   else if(k==='z'){$('undo').click();}
   else if(k==='b'){bloom();}
   else if(k==='f'){$('fs').click();}
-  else if(k==='s'){S.sound=!S.sound; if(master) master.gain.value=S.sound?1:0; toast(S.sound?'Sound on':'Sound off');}
+  else if(k==='s'){setSound(!S.sound); toast(S.sound?'Sound on':'Sound off');}
   else if(k==='escape' && S.phase==='framed'){$('again').click();}
   else { var ci=PAL.findIndex(function(p){return p.k===k;}); if(ci>=0) setCol(ci); }
 });

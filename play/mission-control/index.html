@@ -10,12 +10,13 @@
 <!-- FORBIDS: any Monday.com logo, wordmark or UI chrome; pill tabs; cream card template. Walnut panels, glass glow, rounded console type, status chips in his four states. -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+html{font-synthesis-weight:none}
 :root{
   --walnut:#1c120c; --wood:#2b1b12; --panel:rgba(30,20,14,.86); --line:rgba(255,190,110,.22); --amber:#ffb347; --amber2:#ffd28a; --teal:#3fd0c9; --cream:#fff3e0; --dim:#cdb8a0;
   --done:#00c875; --work:#fdab3d; --stuck:#e2445c; --ns:#c4c4c4;
-  --disp:"Unbounded",system-ui,sans-serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --disp:"Young Serif",Georgia,serif; --sans:"Instrument Sans",system-ui,sans-serif; --mono:"Instrument Sans",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{font-size:16px;background:var(--walnut)}
@@ -123,6 +124,7 @@ html.js .app{display:block}
 .choice{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
 .choice button{min-height:44px;padding:.4rem .8rem;border-radius:10px;background:var(--cream);color:#2a1606;font-weight:700;font-size:.95rem;text-align:left;box-shadow:0 3px 0 #b88a55}
 .choice button:hover{background:#fff}
+.choice button small{display:block;font-weight:600;font-size:.82rem;opacity:.85;margin-top:.15rem}
 .choice button kbd{color:#2a1606;background:rgba(0,0,0,.08);border-color:rgba(0,0,0,.3)}
 .signoff{min-height:44px;padding:.4rem 1rem;border-radius:10px;background:var(--amber);color:#2a1606;font-weight:800;margin-top:.3rem;box-shadow:0 3px 0 #8a4d0e}
 .bfoot{padding:.8rem 1.2rem;color:var(--dim);font-size:.95rem;line-height:1.4}
@@ -162,7 +164,7 @@ html.js .app{display:block}
   .cols{display:none}
   .item{grid-template-columns:1fr auto;grid-template-areas:"nm nm" "ow st" "up up";gap:.45rem .5rem;padding:.8rem .9rem .8rem 1.1rem}
   .item .nm{grid-area:nm}.item .owner{grid-area:ow}.item .status{grid-area:st;min-width:8.6rem;margin:0}.item .upd{grid-area:up;padding-left:0}
-  .crew{position:fixed;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:0;padding:6px 4px calc(env(safe-area-inset-bottom,0px) + 6px);background:rgba(18,12,8,.96);border-top:1px solid var(--line)}
+  .crew{position:fixed;left:0;right:0;bottom:0;z-index:30;flex-direction:row;gap:0;padding:6px 4px calc(env(safe-area-inset-bottom,0px) + 6px);background:rgba(18,12,8,.96);box-shadow:inset 0 1px 0 var(--line)}
   .ccard{display:flex;flex-direction:column;align-items:center;min-height:0;padding:4px 2px;border-radius:12px;background:transparent;border:1px solid transparent;box-shadow:none;gap:0;text-align:center;flex:1;min-width:0}
   .ccard .art{width:56px;height:58px}
   .ccard .who{font-family:var(--sans);font-size:16px;font-weight:700}
@@ -193,6 +195,10 @@ html.js .app{display:block}
 .cap .l1{font-family:var(--disp);font-weight:800;font-size:clamp(26px,3.1rem,84px);line-height:1.05;color:#fff;text-shadow:0 4px 30px rgba(0,0,0,.9),0 0 30px rgba(255,179,71,.5)}
 .cap .l2{margin-top:.8rem;font-size:clamp(18px,1.5rem,40px);font-weight:600;color:var(--amber2);text-shadow:0 2px 14px rgba(0,0,0,.9)}
 .cap .l2 em{font-style:normal;color:#fff}
+.cap .l3{margin-top:.7rem;font-size:clamp(16px,1.05rem,26px);font-weight:600;color:#fff3e0;text-shadow:0 2px 12px rgba(0,0,0,.95)}
+.cap .l3 b{color:var(--teal)}
+.hardnote{min-height:1.2em;margin-top:.3rem;font-size:1rem;color:var(--amber2)}
+.proof{display:block;margin:.35rem 0 .1rem;padding:.35rem .6rem;border-radius:8px;background:#0d0a07;color:var(--teal);font-weight:600}
 .lineup{position:absolute;left:0;right:0;display:flex;justify-content:center;gap:clamp(2px,1.5vw,2rem);opacity:0;transition:opacity 1s}
 .lineup.on{opacity:1}
 .lineup img{width:clamp(60px,8rem,210px);height:clamp(60px,8rem,210px);object-fit:contain;filter:drop-shadow(0 10px 18px rgba(0,0,0,.7));animation:hop 1.1s ease-in-out infinite}
@@ -204,6 +210,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 @media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important}.beams i{animation:none}.show .venue{transition:filter .2s}}
 </style>
 <script>document.documentElement.classList.add('js')</script>
+<script src="../../js/ledger.js"></script>
 </head>
 <body>
 
@@ -213,9 +220,9 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
   <img src="img/poster.jpg" alt="A venue from the back of the room, spotlights in teal and gold sweeping over an empty stage, a blank glowing banner, a cheering crowd in silhouette.">
   <h2>The crew</h2>
   <ul>
-    <li><strong>Darby</strong>: builds and writes</li>
-    <li><strong>dot</strong>: outreach and follow-ups</li>
-    <li><strong>Astra</strong>: research and checks</li>
+    <li><strong>Darby</strong>: builds and delivers</li>
+    <li><strong>dot</strong>: reviews</li>
+    <li><strong>Astra</strong>: checks sources</li>
     <li><strong>Tasklet</strong>: email and calendar</li>
     <li><strong>Ideas</strong>: that's Gordon, big swings</li>
   </ul>
@@ -224,25 +231,25 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
     <tr><th>Item</th><th>Owner</th><th>Status</th></tr>
     <tr><td>Lock the venue and date</td><td>Tasklet</td><td>Done</td></tr>
     <tr><td>Run of show, minute by minute</td><td>Darby</td><td>Done</td></tr>
-    <tr><td>Guest and speaker outreach</td><td>dot</td><td>Done</td></tr>
-    <tr><td>Tech check: stream, mics, slides</td><td>Astra</td><td>Done</td></tr>
+    <tr><td>Review the speaker lineup</td><td>dot</td><td>Done</td></tr>
+    <tr><td>Tech check: stream, mics, slides</td><td>Darby</td><td>Done</td></tr>
     <tr><td>The wow moment</td><td>Ideas</td><td>Done</td></tr>
-    <tr><td>Social posts and reminders</td><td>dot</td><td>Done</td></tr>
-    <tr><td>Thank-you notes to partners</td><td>Darby</td><td>Done</td></tr>
+    <tr><td>Check the social posts</td><td>Astra</td><td>Done</td></tr>
+    <tr><td>Review the partner thank-yous</td><td>dot</td><td>Done</td></tr>
     <tr><td>Partner shout-out in the opener (comes in late)</td><td>Astra</td><td>Done</td></tr>
     <tr><td>Day-of checklist (comes in late)</td><td>Tasklet</td><td>Done</td></tr>
     <tr><td>Definition of Done check</td><td>Eric, Executive Producer</td><td>Done</td></tr>
   </table>
   <h2>Then it ships</h2>
-  <p>The stage lights come up one bank at a time, the room applauds, and the line reads: <strong>Every great crew needs an Executive Producer.</strong> And from Gordon: <strong>I have ideas. You have follow-through.</strong></p>
+  <p>The stage lights come up one bank at a time, the room applauds, and the line reads: <strong>Every great crew needs an Executive Producer.</strong> And the season's theme: <strong>he brings the ideas, you bring the follow-through.</strong></p>
   <p>Turn on JavaScript to run the launch yourself, with sound.</p>
-  <a class="back" href="../../index.html">Back to the board</a>
+  <a class="back" href="../../index.html" data-board="../../">Back to the board</a>
 </article>
 
 <div class="app" id="app">
   <div class="room"></div>
   <div class="top">
-    <a class="b" href="../../index.html">Back to the board</a>
+    <a class="b" href="../../index.html" data-board="../../">Back to the board</a>
     <h1>Mission Control: Executive Producer</h1>
     <span class="sp"></span>
     <button class="b" id="mute" aria-pressed="false"><span>Sound on</span><kbd>M</kbd></button>
@@ -268,6 +275,7 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
         <div class="chips" data-g="dt" style="margin-top:.5rem"></div>
         <div class="preview"><span id="pv"></span><small>Event @ Venue (Day, time). Named the way you name them.</small></div>
       </div>
+      <div id="hardhost"></div><div class="hardnote" id="hardnote"></div>
       <div class="row"><button class="go" id="open">Open the board <kbd>Enter</kbd></button></div>
     </div>
   </section>
@@ -297,9 +305,9 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
     <div class="beams"><i></i><i></i><i></i><i></i><i></i></div>
     <div class="banner" id="banner"></div>
     <canvas class="fx" id="fx"></canvas>
-    <div class="cap" id="cap"><div class="l1">Every great crew needs an Executive Producer.</div><div class="l2">Gordon: <em>"I have ideas. You have follow-through."</em></div></div>
+    <div class="cap" id="cap"><div class="l1">Every great crew needs an Executive Producer.</div><div class="l2"><em>He brings the ideas. You bring the follow-through.</em></div><div class="l3" id="calls"></div></div>
     <div class="lineup" id="lineup"><img src="img/crew-darby.webp" alt="Darby"><img src="img/crew-dot.webp" alt="dot"><img src="img/crew-astra.webp" alt="Astra"><img src="img/crew-tasklet.webp" alt="Tasklet"><img src="img/crew-ideas.webp" alt="Ideas"></div>
-    <div class="endrow" id="endrow"><button class="go" id="again">Run another launch <kbd>R</kbd></button><a class="go alt" href="../../index.html">Back to the board <kbd>B</kbd></a></div>
+    <div class="endrow" id="endrow"><button class="go" id="again">Run another launch <kbd>R</kbd></button><a class="go alt" href="../../index.html" data-board="../../">Back to the board <kbd>B</kbd></a></div>
   </div>
 </div>
 
@@ -309,32 +317,65 @@ canvas.fx{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
 var $=function(s){return document.querySelector(s)};
 var CREW=[
-  {k:'darby',n:'Darby',role:'Builds and writes'},
-  {k:'dot',n:'dot',role:'Outreach and follow-ups'},
-  {k:'astra',n:'Astra',role:'Research and checks'},
+  {k:'darby',n:'Darby',role:'Builds and delivers'},
+  {k:'dot',n:'dot',role:'Reviews'},
+  {k:'astra',n:'Astra',role:'Checks sources'},
   {k:'tasklet',n:'Tasklet',role:'Email and calendar'},
   {k:'ideas',n:'Ideas',role:"That's Gordon. Big swings."}
 ];
 var ITEMS=[
   {n:'Lock the venue and date',best:'tasklet',work:'Holding the calendar',done:'Venue held. Calendar invites are out.'},
   {n:'Run of show, minute by minute',best:'darby',work:'Drafting the run of show',done:'Run of show drafted. Every minute accounted for.'},
-  {n:'Guest and speaker outreach',best:'dot',work:'Writing to guests',stuckAt:.45,q:'Two guests want the opening slot. Your call?',opts:['Alphabetical, keep it fair','Whoever said yes first'],done:'Both confirmed. Speaking order locked.'},
-  {n:'Tech check: stream, mics, slides',best:'astra',work:'Testing the stream',stuckAt:.55,q:'Backup plan if the stream drops?',opts:['Backup laptop on standby','Spare mic and a hotspot'],done:'Tech check passed. Backup ready.'},
+  {n:'Review the speaker lineup',best:'dot',work:'Reviewing the lineup',stuckAt:.45,q:'Two guests want the opening slot. Your call?',opts:['Alphabetical, keep it fair','Whoever said yes first'],done:'Lineup reviewed. Speaking order locked.'},
+  {n:'Tech check: stream, mics, slides',best:'darby',work:'Testing the stream',stuckAt:.55,q:'Backup plan if the stream drops?',opts:['Backup laptop on standby','Spare mic and a hotspot'],done:'Tech check passed. Backup ready.'},
   {n:'The wow moment',best:'ideas',work:'Having ideas',stuckAt:.4,q:'I have eleven ideas. Pick one?',opts:['The one with confetti','Surprise me'],done:'Wow moment locked. Confetti cleared with the venue.'},
-  {n:'Social posts and reminders',best:'dot',work:'Scheduling posts',done:'Three posts scheduled. Reminder goes out that morning.'},
-  {n:'Thank-you notes to partners',best:'darby',work:'Writing thank-yous',done:'Thank-you notes drafted for your signature.'},
+  {n:'Check the social posts',best:'astra',work:'Checking every name and link',done:'Three posts checked. Every name and link verified.'},
+  {n:'Review the partner thank-yous',best:'dot',work:'Reviewing the thank-yous',done:'Thank-you notes reviewed and ready for your signature.'},
   {n:'Partner shout-out in the opener',best:'astra',late:20,work:'Checking the partner details',done:'Shout-out written. Names and spellings double-checked.'},
   {n:'Day-of checklist',best:'tasklet',late:36,work:'Building the checklist',done:'Day-of checklist sent to the whole crew.'}
 ];
-var NAMES={ev:['GGP Weekly Connect','IGNITE Impact Challenge Kickoff','Dragon House Session'],vn:['The Dragon House','Stoughton','Madison'],dt:['Thursday, 7:00 PM','Saturday, 10:00 AM','Tuesday, 12:00 PM']};
+var NAMES={ev:['GGP Weekly Connect','IGNITE Impact Challenge Kickoff','D&D night'],vn:['The Dragon House','Stoughton','Madison'],dt:['Thursday, 7:00 PM','Saturday, 10:00 AM','Tuesday, 12:00 PM']};
 var pick={ev:0,vn:0,dt:0};
+/* calls only Eric can make. Hard mode on a return visit draws 3 from this pool, rotated by month and visit.
+   Detail calls (det) hide one wrong field in a proof; catching it is the call. Missing it never fails: the crew double-checks. */
+function swapOne(g){ var o=NAMES[g].slice(); o.splice(pick[g],1); return o[(new Date().getMonth()+pick.ev)%o.length]; }
+function nameWith(g,v){ var c={ev:NAMES.ev[pick.ev],vn:NAMES.vn[pick.vn],dt:NAMES.dt[pick.dt]}; c[g]=v; return c.ev+' @ '+c.vn+' ('+c.dt+')'; }
+var CALLS=[
+  {id:'opening',q:function(){return 'Two guests want the opening slot. Your call?';},opts:['Alphabetical, keep it fair','Whoever said yes first']},
+  {id:'stream',q:function(){return 'Backup plan if the stream drops?';},opts:['Backup laptop on standby','Spare mic and a hotspot']},
+  {id:'wow',q:function(){return 'I have eleven ideas. Pick one?';},opts:['The one with confetti','Surprise me']},
+  {id:'proof-day',det:0,q:function(){ return 'Banner proof. Every detail right?<span class="proof">'+nameWith('dt',swapOne('dt'))+'</span>';},opts:['The day is wrong','Ship it as is'],fix:'the day'},
+  {id:'proof-venue',det:0,q:function(){ return 'Banner proof. Every detail right?<span class="proof">'+nameWith('vn',swapOne('vn'))+'</span>';},opts:['The venue is wrong','Ship it as is'],fix:'the venue'},
+  {id:'credits',det:0,q:function(){ return 'Run of show credits. Every name right?<span class="proof">Darby, dot, Asta, Tasklet, Ideas</span>';},opts:['Astra is misspelled','Looks right'],fix:'a crew name'},
+  {id:'doors',q:function(){return 'When do doors open?';},opts:['30 minutes early','15 minutes early']},
+  {id:'qa',q:function(){return 'We are running long. Your call?';},opts:['Trim the intro, keep the Q and A','End on time, Q and A after']},
+  {id:'thanks',q:function(){return 'Who gets the first thank-you on stage?';},opts:['The crew','The partners']}
+];
+var HARD=false, drawn=[], answers=[];
+/* every call Eric makes hands a head start to one of the two Items that arrive later (DESIGN: the call sets which later Item gets an assist) */
+var LATE=ITEMS.filter(function(d){return d.late;}), HEAD={}, heads=[];
+function headFor(j){ return LATE[j%LATE.length]; }
+function giveHead(t,fromItem){
+  var add=.35; HEAD[t.n]=Math.min(.7,(HEAD[t.n]||0)+add); heads.push({to:t.n,from:fromItem});
+  var x=items.filter(function(y){return y.d===t;})[0];
+  if(x){ if(x.st==='work'){ x.p=Math.min(.95,x.p+add); x.fill.style.width=(x.p*100)+'%'; burst(x.stEl,10,'#3fd0c9'); x.upd.innerHTML=x.upd.innerHTML.replace(/<em class="hd">.*?<\/em>/,'')+'<em class="hd"> Head start from your call.</em>'; }
+    else if(x.st==='ns'){ x.head=HEAD[t.n]; x.upd.textContent='Head start from your call: '+Math.round(x.head*100)+'% done already.'; x.fill.style.width=(x.head*100)+'%'; burst(x.el,8,'#3fd0c9'); } }
+  toast('Head start for "'+t.n+'".');
+}
+function drawCalls(){
+  if(!HARD){ drawn=[CALLS[0],CALLS[1],CALLS[2]]; return drawn; }
+  var d=new Date(), v=0; try{ v=window.ledger?(+ledger.get().visits||0):0; }catch(e){}
+  var seed=d.getMonth()+v*2, det=CALLS.filter(function(c){return c.det!=null;}), gen=CALLS.filter(function(c){return c.det==null;});
+  var a=gen[seed%gen.length], b=gen[(seed+2)%gen.length], c=det[seed%det.length];
+  drawn=[a,c,b]; return drawn;
+}
 function eventName(){return NAMES.ev[pick.ev]+' @ '+NAMES.vn[pick.vn]+' ('+NAMES.dt[pick.dt]+')';}
 
 /* ---------- audio ---------- */
 var AC=null,master=null,bufs={},muted=false,groove=null,grooveG=null,typing=null,typingG=null;
 var SND=['groove','typing','fanfare','applause','assign','done','stuck','unblock','lights','launch','go','intro'];
 function initAudio(){
-  if(AC) return; try{AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.connect(AC.destination);
+  if(AC) return; try{AC=new (window.AudioContext||window.webkitAudioContext)(); master=AC.createGain(); master.gain.value=muted?0:1; master.connect(AC.destination);
     SND.forEach(function(n){ fetch('snd/'+n+'.mp3').then(function(r){return r.arrayBuffer()}).then(function(a){return new Promise(function(res,rej){AC.decodeAudioData(a,res,rej)})}).then(function(b){bufs[n]=b; if(n==='groove'&&state==='board'&&!groove)startGroove(); if(n==='typing'&&!typing)startTyping(); if(n==='intro'&&pendingIntro){pendingIntro=false;play('intro');}}).catch(function(){}); });
   }catch(e){AC=null}
 }
@@ -344,7 +385,10 @@ function startGroove(){ if(!AC||!bufs.groove||groove) return; var a=loopSrc('gro
 function startTyping(){ if(!AC||!bufs.typing||typing) return; var a=loopSrc('typing'); typing=a[0]; typingG=a[1]; typingG.gain.value=0; typing.start(0,.05); }
 function setTyping(on){ if(!typingG) return; typingG.gain.setTargetAtTime(on?1:0,AC.currentTime,.12); }
 function fadeGroove(){ if(!grooveG) return; grooveG.gain.setValueAtTime(grooveG.gain.value,AC.currentTime); grooveG.gain.linearRampToValueAtTime(0,AC.currentTime+1.2); var g=groove; groove=null; setTimeout(function(){try{g.stop()}catch(e){}},1400); }
-function setMute(m){ muted=m; if(master) master.gain.value=m?0:1; $('#mute span').textContent=m?'Sound off':'Sound on'; $('#mute').setAttribute('aria-pressed',m?'true':'false'); }
+function applyMute(m){ muted=m; if(master) master.gain.value=m?0:1; $('#mute span').textContent=m?'Sound off':'Sound on'; $('#mute').setAttribute('aria-pressed',m?'true':'false'); }
+/* one site-wide Sound flag in the shared ledger: the board's choice holds here, and a change here carries back */
+function setMute(m){ if(window.ledger) ledger.setSound(!m); else applyMute(m); }
+if(window.ledger) ledger.bindSound(function(on){ applyMute(!on); });
 var pendingIntro=false;
 
 /* ---------- intro: name the launch ---------- */
@@ -384,7 +428,7 @@ function addItem(d){
     r.addEventListener('keydown',function(e){ if(e.key==='Enter'&&it.st==='ns'){ select(i);} });
     r.addEventListener('pointerdown',function(e){ startDrag(e,it); });
     items.push(it);
-    if(d.late){ r.classList.add('ep'); r.querySelector('.upd').textContent='Just came in. Needs an owner.'; toast('New item: '+d.n); play('assign'); if(sel<0||!items[sel]||items[sel].st!=='ns'){sel=i;} paintSel(); counts(); }
+    if(d.late){ r.classList.add('ep'); it.head=HEAD[d.n]||0; r.querySelector('.upd').textContent=it.head?'Just came in, '+Math.round(it.head*100)+'% done already: head start from your call.':'Just came in. Needs an owner.'; if(it.head) it.fill.style.width=(it.head*100)+'%'; toast('New item: '+d.n); play('assign'); if(sel<0||!items[sel]||items[sel].st!=='ns'){sel=i;} paintSel(); counts(); }
 }
 function paintSel(){ items.forEach(function(it,i){it.el.classList.toggle('sel',i===sel)}); var ready=sel>=0&&items[sel]&&items[sel].st==='ns';
   CREW.forEach(function(c){ crew[c.k].el.classList.toggle('ready', ready && !crew[c.k].busy); }); }
@@ -403,7 +447,7 @@ function crewTap(k){
 function shake(el){ if(RM) return; el.animate([{transform:'translateX(0)'},{transform:'translateX(-6px)'},{transform:'translateX(6px)'},{transform:'translateX(0)'}],{duration:260}); }
 function assign(it,k){
   var cr=crew[k]; if(cr.busy||it.st!=='ns') return;
-  it.who=k; cr.busy=it; it.st='work'; it.p=0; var match=it.d.best===k; it.dur=match?10:15;
+  it.who=k; cr.busy=it; it.st='work'; it.p=it.head||0; var match=it.d.best===k; it.dur=match?10:15;
   it.own.innerHTML='<img alt="" src="img/crew-'+k+'.webp"><span class="on">'+cr.c.n+'</span>';
   setStatus(it,'work','Working on it');
   it.upd.innerHTML=(match?'<b>Perfect match.</b> ':'')+cr.c.n+': '+it.d.work+'...';
@@ -415,7 +459,8 @@ function setStatus(it,cls,txt){ it.stEl.className='status '+cls+(RM?'':' flip');
 function stuck(it){
   it.st='stuck'; setStatus(it,'stuck','Stuck'); play('stuck');
   var cr=crew[it.who]; cr.el.classList.remove('work'); cr.el.classList.add('stuck'); cr.st.innerHTML='<span class="t">Needs your call</span>';
-  it.upd.innerHTML='<b>'+cr.c.n+':</b> '+it.d.q+'<div class="choice">'+it.d.opts.map(function(o,j){return '<button type="button" data-j="'+j+'">'+o+' <kbd>'+(j?'J':'U')+'</kbd></button>'}).join('')+'</div>';
+  var si=ITEMS.filter(function(d){return d.stuckAt;}).indexOf(it.d); it.call=drawn[si]||CALLS[si]||CALLS[0];
+  it.upd.innerHTML='<b>'+cr.c.n+':</b> '+it.call.q()+'<div class="choice">'+it.call.opts.map(function(o,j){return '<button type="button" data-j="'+j+'">'+o+' <kbd>'+(j?'J':'U')+'</kbd><small>Head start: '+headFor(j).n+'</small></button>'}).join('')+'</div>';
   [].forEach.call(it.upd.querySelectorAll('.choice button'),function(b){ b.addEventListener('click',function(e){ e.stopPropagation(); unblock(it,+b.dataset.j); }); });
   counts();
 }
@@ -423,7 +468,10 @@ function unblock(it,j){
   if(it.st!=='stuck') return;
   it.stuckDone=true; it.st='work'; setStatus(it,'work','Working on it'); play('unblock');
   var cr=crew[it.who]; cr.el.classList.remove('stuck'); cr.el.classList.add('work'); cr.st.innerHTML='<span class="dots"><i></i><i></i><i></i></span><span class="t">'+it.d.work+'</span>';
-  it.upd.innerHTML='<b>You:</b> '+it.d.opts[j]+'. <b>'+cr.c.n+':</b> On it.';
+  var c=it.call||CALLS[0], caught=c.det!=null&&j===c.det, missed=c.det!=null&&j!==c.det;
+  var hd=headFor(j); answers.push({id:c.id,pick:c.opts[j],detail:c.det!=null,caught:caught,head:hd.n});
+  it.upd.innerHTML='<b>You:</b> '+c.opts[j]+'. <b>'+cr.c.n+':</b> '+(caught?'Good catch. Fixed.':missed?'Double-checked, and '+c.fix+' was off. Fixed.':'On it.')+' <em>Head start to '+hd.n+'.</em>'; giveHead(hd,it.d.n);
+  if(caught){ play('done',.6); try{ if(window.ledger) ledger.first('mc-catch','First detail caught in Mission Control'); }catch(e){} }
   burst(it.stEl,12,'#ffd28a'); counts();
 }
 function finish(it){
@@ -450,7 +498,7 @@ function addEP(){
   $('#bcount').textContent=items.length+' of '+(items.length+1)+' Done';
   play('stuck',.6);
   r.scrollIntoView({block:'center',behavior:RM?'auto':'smooth'});
-  $('#sign').addEventListener('click',signOff); setTimeout(function(){$('#sign').focus({preventScroll:true})},200);
+  $('#sign').addEventListener('click',signOff); setTimeout(function(){ var sb=$('#sign'); if(sb&&!launched) sb.focus({preventScroll:true}); },200);
 }
 function signOff(){
   if(!epRow||launched) return; launched=true;
@@ -516,6 +564,10 @@ function launch(){
   state='show'; fadeGroove(); setTyping(false); play('launch');
   var sh=$('#show'); sh.classList.remove('hide'); sizeFx();
   $('#banner').textContent=eventName();
+  var nc=answers.filter(function(a){return a.caught;}).length, nd=answers.filter(function(a){return a.detail;}).length, wide=innerWidth>=1000;
+  $('#calls').innerHTML='Your calls: '+(wide?answers.map(function(a){return a.caught?'<b>caught a detail</b>':a.pick;}).join('. ')+'.':answers.length+' made.')+(nd?' Details caught: <b>'+nc+' of '+nd+'</b>.':'')+(heads.length?' Head starts handed on: <b>'+heads.length+'</b>.':'');
+  window.__mcCalls={drawn:drawn.map(function(c){return c.id;}),answers:answers.slice(),hard:HARD};
+  try{ if(window.ledger){ var pm=items.filter(function(x){return x.who===x.d.best;}).length; ledger.done('mission-control',HARD?'Launched. '+nc+' of '+nd+' details caught.':'Launched. '+pm+' of '+items.length+' perfect matches.',{event:eventName(),matches:pm,items:items.length,calls:answers.map(function(a){return a.pick;}),heads:heads.map(function(h){return h.to;}),caught:nc,details:nd,hard:HARD}); ledger.add('launches',1); } }catch(e){}
   var v=$('#venue'); v.style.filter='brightness(.06) saturate(.6)';
   setTimeout(function(){ play('go'); },700);
   var L=[.25,.45,.7,1.05];
@@ -539,7 +591,7 @@ function openBoard(){
   initAudio(); if(AC&&AC.state==='suspended') AC.resume();
   state='board'; launched=false; $('#intro').classList.add('hide'); $('#boardScr').classList.remove('hide'); $('#show').classList.add('hide');
   ['#cap','#lineup','#endrow'].forEach(function(s){$(s).classList.remove('on')}); $('#show').classList.remove('lit'); parts=[];
-  $('#ename').textContent=eventName();
+  $('#ename').textContent=eventName(); answers=[]; HEAD={}; heads=[]; drawCalls();
   $('#bfoot').innerHTML='Pick an item, then a crew member. Or drag an item onto a crew card.<span class="kh"> Keys: <kbd>&uarr;</kbd><kbd>&darr;</kbd> pick, <kbd>1</kbd> to <kbd>5</kbd> assign.</span>';
   CREW.forEach(function(c){ var cr=crew[c.k]; cr.busy=null; cr.el.className='ccard'; cr.st.innerHTML='<span class="t">Ready</span>'; });
   buildItems(); counts(); scrollTo(0,0);
@@ -557,7 +609,7 @@ addEventListener('keydown',function(e){
   if(k==='m'||k==='M'){setMute(!muted);return;}
   if(k==='f'||k==='F'){toggleFs();return;}
   if(state==='intro'){ if(k==='Enter'&&!(document.activeElement&&document.activeElement.classList.contains('chip'))){e.preventDefault();openBoard();} return; }
-  if(state==='end'){ if(k==='r'||k==='R') $('#again').click(); if(k==='b'||k==='B') location.href='../../index.html'; return; }
+  if(state==='end'){ if(k==='r'||k==='R') $('#again').click(); if(k==='b'||k==='B') location.href=(window.ledger?ledger.boardHref('../../'):'../../index.html'); return; }
   if(state!=='board') return;
   if(k==='ArrowDown'||k==='ArrowUp'){ e.preventDefault(); var n=items.length, i=sel<0?0:sel; i=(i+(k==='ArrowDown'?1:n-1))%n; select(i); items[i].el.focus({preventScroll:false}); return; }
   if(k>='1'&&k<='5'){ crewTap(CREW[+k-1].k); return; }
@@ -567,7 +619,9 @@ addEventListener('keydown',function(e){
 addEventListener('resize',function(){ if(state==='show'||state==='end') sizeFx(); });
 document.addEventListener('visibilitychange',function(){ if(!AC) return; if(document.hidden) AC.suspend(); else AC.resume(); });
 last=performance.now(); requestAnimationFrame(loop);
-window.__mc={get state(){return state}, get items(){return items.map(function(x){return {st:x.st,who:x.who,best:x.d.best}})}, crew:crew};
+function applyHard(on){ HARD=!!on; $('#hardnote').textContent=HARD?'Hard: three calls drawn from a pool of nine, new each month and visit. Some hide a wrong detail.':''; }
+if(window.ledger){ ledger.hardToggle('mission-control',$('#hardhost'),applyHard,'rotating call pool'); applyHard(ledger.hard('mission-control')); }
+window.__mc={get state(){return state}, get items(){return items.map(function(x){return {st:x.st,who:x.who,best:x.d.best}})}, crew:crew, get hard(){return HARD}, get drawn(){return drawn.map(function(c){return c.id;})}, get answers(){return answers.slice()}, get heads(){return heads.slice()}, get headStart(){return JSON.parse(JSON.stringify(HEAD))}, CALLS:CALLS};
 })();
 </script>
 </body>
